@@ -1,3 +1,3 @@
-class User < ActiveRecord::base
-  has_many :job_items
+class User < ActiveRecord::Base
+  has_many :items
 end

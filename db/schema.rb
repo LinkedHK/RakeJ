@@ -11,44 +11,49 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140820121758) do
+ActiveRecord::Schema.define(version: 20140821140514) do
 
-  create_table "job_categories", force: true do |t|
+  create_table "item_categories", force: true do |t|
     t.integer "parent_id", default: -1
     t.string  "name",                   null: false
   end
 
-  add_index "job_categories", ["name"], name: "index_job_categories_on_name", unique: true, using: :btree
-  add_index "job_categories", ["parent_id"], name: "index_job_categories_on_parent_id", using: :btree
+  add_index "item_categories", ["name"], name: "index_item_categories_on_name", unique: true, using: :btree
+  add_index "item_categories", ["parent_id"], name: "index_item_categories_on_parent_id", using: :btree
 
-  create_table "job_items", force: true do |t|
+  create_table "item_description", force: true do |t|
+    t.integer "item_id"
+    t.string  "item_title"
+    t.text    "item_description"
+    t.string  "locale",           limit: 10
+  end
+
+  add_index "item_description", ["item_id"], name: "index_item_description_on_item_id", using: :btree
+
+  create_table "item_location", force: true do |t|
+    t.integer "item_id"
+    t.integer "location_country_id"
+    t.string  "s_country"
+    t.integer "location_city_id"
+    t.string  "s_city"
+    t.integer "location_district_id"
+    t.string  "s_district"
+    t.decimal "d_coord_lat",          precision: 10, scale: 6
+    t.decimal "d_coord_long",         precision: 10, scale: 6
+  end
+
+  create_table "item_tags", force: true do |t|
+    t.string  "name",    limit: 15
+    t.integer "item_id"
+  end
+
+  create_table "items", force: true do |t|
     t.integer  "user_id"
-    t.integer  "job_categories_id"
-    t.string   "job_type"
-    t.integer  "duration_day"
-    t.integer  "duration_weeks"
-    t.integer  "duration_month"
-    t.string   "job_status"
-    t.string   "location_country"
-    t.string   "location_city"
-    t.string   "location_district"
-    t.string   "job_title",                     null: false
-    t.text     "job_description"
-    t.datetime "planned_start_date"
-    t.integer  "salary_min"
-    t.string   "salary_max"
-    t.string   "currency",           limit: 10
-    t.string   "language",           limit: 10
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "job_items", ["user_id"], name: "index_job_items_on_user_id", using: :btree
-
-  create_table "job_tags", force: true do |t|
-    t.integer "job_items_id"
-    t.string  "name",         limit: 15
-  end
+  add_index "items", ["user_id"], name: "index_items_on_user_id", using: :btree
 
   create_table "location_city", force: true do |t|
     t.integer "location_country_id"
