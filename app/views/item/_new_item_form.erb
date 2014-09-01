@@ -1,0 +1,22 @@
+<%= form_for(@item,{:url => :item_new,  :html => { :id => "new_item_form"}}) do|f| %>
+    <%= f.fields_for :description do |d|%>
+        <%= render "new_item_descr_field", :f => d %>
+    <% end%>
+
+    <div class="form-group">
+      <label>
+        <%= t("form_input.item.item_category") %>
+      </label>
+      <%= fields_for :category  do |l| %>
+          <%= l.collection_select(:item_category_id, CategoryDescription.all.where(:locale => 'en_US'), :item_category_id, :name, {prompt: t("form_input.item.default_select") },{class: "form-control"})%>
+    <% end%>
+    </div>
+
+    <%= fields_for :location  do |l| %>
+        <%= render "field_location", :f => l %>
+    <% end%>
+    <input type="submit" class="btn btn-primary btn-lg" />
+
+
+
+<% end %>

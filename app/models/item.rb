@@ -1,7 +1,13 @@
 class Item < ActiveRecord::Base
-  has_many :item_tags
-  has_one :location
 
+  has_many :item_tags, :dependent => :destroy
+  has_many :item_descriptions, :dependent => :destroy
+  has_one :item_location, :dependent => :destroy, class_name: ItemLocation
+  belongs_to :item_category, class_name: "ItemCategory"
+
+  accepts_nested_attributes_for :item_tags
+  accepts_nested_attributes_for :item_descriptions, reject_if: :all_blank
+  accepts_nested_attributes_for :item_location
 # == Schema Information
 
 =begin

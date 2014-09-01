@@ -1,4 +1,7 @@
-class Location < ActiveRecord::Base
+
+
+class ItemLocation < ActiveRecord::Base
+  self.table_name = "item_location"
   belongs_to :item
   belongs_to :location_country
   belongs_to :location_city

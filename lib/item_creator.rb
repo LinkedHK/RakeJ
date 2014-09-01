@@ -14,23 +14,37 @@ class ItemCreator
   end
 
   def create
-    @item = Item.new(setup_item_params)
+
+    params = setup_item_params
+  @item = Item.new(item_categories_id: params[:category])
+  @item.save
+  @item.item_descriptions([item_id: @item.id,
+                           item_title: params[:title],
+                           item_description: params[:description]])
+
+  location = Location.new(item_id: @item.id,
+                           location_city_id: params[:location_city].id,
+                           s_city: params[:location_city].name,
+                           location_district_id: params[:location_district].id,
+                           s_district: params[:location_district].name
+  )
+  @item.location = location
+
   end
 
   def setup_item_params
     item_params = {
         title: @opts[:title],
-        description: @opt[:item_description]
+        description: @opts[:description]
     }
     category = find_category
     country = find_country
     city = find_city
     district = find_district
-
-    item_params[:category_id] = category[:id] if category.present?
-    item_params[:location_country] = country[:country] if country.present?
-    item_params[:location_city] = city[:city] if city.present?
-    item_params[:location_district] = district[:district] if district.present?
+    item_params[:category] = category if category.present?
+    item_params[:location_country] = country if country.present?
+    item_params[:location_city] = city if city.present?
+    item_params[:location_district] = district if district.present?
 
     item_params
   end
@@ -45,7 +59,7 @@ class ItemCreator
 
   def find_category
     if @opts[:category_id]  =~ /^\d+$/
-      ItemCategory.find_by(id: @opts[:category])
+     cat =  ItemCategory.find_by(id: @opts[:category].to_i)
     else
      nil
     end
@@ -53,14 +67,14 @@ class ItemCreator
 
  def find_country
    if @opts[:location_country]  =~ /^\d+$/
-     ItemCategory.find_by(id: @opts[:location_country])
+     LocationCountry.find_by(id: @opts[:location_country])
    else
      nil
    end
  end
   def find_city
     if @opts[:location_city]  =~ /^\d+$/
-      ItemCategory.find_by(id: @opts[:location_city])
+      LocationCity.find_by(id: @opts[:location_city])
     else
       nil
     end
@@ -68,7 +82,7 @@ class ItemCreator
 
   def find_district
     if @opts[:location_district]  =~ /^\d+$/
-      ItemCategory.find_by(id: @opts[:location_district])
+      LocationDistrict.find_by(id: @opts[:location_district])
     else
       nil
     end

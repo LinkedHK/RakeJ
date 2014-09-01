@@ -1,0 +1,24 @@
+<div form="form-group">
+  <label>
+    <%= t("form_input.item.item_location_city") %>
+  </label>
+  <%= f.collection_select(:city, LocationCity.all, :id, :name, {prompt: t("form_input.item.default_select") },
+                          {
+          class: "form-control",
+          id: "location_city"
+                          })
+
+  %>
+</div>
+<div form="form-group">
+  <label>
+    <%= t("form_input.item.item_location_district") %>
+  </label>
+  <%= f.collection_select(:district, LocationDistrict.none, :id, :name, {prompt: t("form_input.item.default_select") },
+                          {
+                                  class: "form-control",
+                                  id: "location_district"
+                          })
+
+  %>
+</div>

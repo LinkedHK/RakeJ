@@ -11,14 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140821140514) do
+ActiveRecord::Schema.define(version: 20140901172420) do
+
+  create_table "category_description", force: true do |t|
+    t.integer "item_category_id"
+    t.string  "name",             limit: 100
+    t.string  "locale",           limit: 5,   default: "en_US"
+  end
+
+  add_index "category_description", ["item_category_id"], name: "index_category_description_on_item_category_id", using: :btree
+  add_index "category_description", ["locale"], name: "index_category_description_on_locale", using: :btree
 
   create_table "item_categories", force: true do |t|
     t.integer "parent_id", default: -1
-    t.string  "name",                   null: false
+    t.boolean "enabled"
   end
 
-  add_index "item_categories", ["name"], name: "index_item_categories_on_name", unique: true, using: :btree
+  add_index "item_categories", ["enabled"], name: "index_item_categories_on_enabled", using: :btree
   add_index "item_categories", ["parent_id"], name: "index_item_categories_on_parent_id", using: :btree
 
   create_table "item_description", force: true do |t|
@@ -31,7 +40,6 @@ ActiveRecord::Schema.define(version: 20140821140514) do
   add_index "item_description", ["item_id"], name: "index_item_description_on_item_id", using: :btree
 
   create_table "item_location", force: true do |t|
-    t.integer "item_id"
     t.integer "location_country_id"
     t.string  "s_country"
     t.integer "location_city_id"
@@ -40,6 +48,7 @@ ActiveRecord::Schema.define(version: 20140821140514) do
     t.string  "s_district"
     t.decimal "d_coord_lat",          precision: 10, scale: 6
     t.decimal "d_coord_long",         precision: 10, scale: 6
+    t.integer "item_id"
   end
 
   create_table "item_tags", force: true do |t|
@@ -51,6 +60,7 @@ ActiveRecord::Schema.define(version: 20140821140514) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "item_category_id"
   end
 
   add_index "items", ["user_id"], name: "index_items_on_user_id", using: :btree
@@ -76,6 +86,16 @@ ActiveRecord::Schema.define(version: 20140821140514) do
 
   add_index "location_district", ["location_city_id"], name: "index_location_district_on_location_city_id", using: :btree
   add_index "location_district", ["name"], name: "index_location_district_on_name", unique: true, using: :btree
+
+  create_table "sessions", force: true do |t|
+    t.string   "session_id", null: false
+    t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true, using: :btree
+  add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "first_name"

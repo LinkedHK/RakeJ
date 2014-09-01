@@ -1,0 +1,58 @@
+<div class="container" ng-controller="LocationInputConroller">
+  <h1>Input location</h1>
+
+<%= form_tag(:location_create, id: "form_location") do |f|%>
+      <div class="form-group">
+        <label ><%= t("forms_elements.job_location_city") %></label>
+
+        <%= collection_select(:city,:city_id,LocationCity.all, :id, :name,prompt: true)%>
+      </div>
+      <div class="form-group">
+        <label for="location_district"><%= t("forms_elements.job_location_district") %></label>
+        <input name="city[location_district]" type="text"  />
+      </div>
+      <div class="form-group">
+        <input type="submit" value="submit" name="submit">
+      </div>
+      <div class="assert_result">
+
+      </div>
+<% end %>
+
+
+</div>
+<script>
+    (function($){
+       var $form = $("#form_location");
+
+        $form.on("submit",function(e){
+            var data = $form.serialize();
+            var $proccess= $('.assert_result');
+            e.preventDefault();
+            $.ajax({
+                url: '<%= url_for (:location_create) %>',
+                data: data,
+                method: 'POST',
+                cache: false,
+                beforeSend : function(){
+                    $proccess.css("color","green").text("Processing..");
+
+                },
+                error : function(){
+                    alert("oops, Something wrong. Please try to reload page and try again.");
+                    $proccess.hide();
+                }
+
+
+            }).done(function(e){
+                $proccess.hide();
+            })
+
+
+        }) ;
+    })(jQuery);
+</script>
+
+
+
+

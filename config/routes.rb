@@ -31,7 +31,17 @@ Rails.application.routes.draw do
 
   root to: 'static#index'
 
-  resource :jobs
+
+  scope "/item" do
+    get "/new", to: "item#new", as: 'item_new'
+    post "/create", to: "item#create", as: 'item_create'
+  end
+
+  scope "/location" do
+    get "/district/:city_id", to: "location#district",constraints: { city_id: /\d+/ }
+  end
+
+
 
   # Example resource route with sub-resources:
   #   resources :products do

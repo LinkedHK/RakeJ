@@ -1,0 +1,21 @@
+<div class="form-group">
+  <label class="disabled">
+    <%= t("form_input.item.item_title") %>
+    <span id="input_length_title">0</span>/100
+  </label>
+  <%= f.text_field :item_title, {:class => ["changeable","form-control"],
+                                 :id => "item_title",
+                                 :maxlength => "100",
+                                 :data_name => "title"} %>
+</div>
+<div class="form-group">
+  <label class="disabled">
+    <%= t("form_input.item.item_description") %>
+    <span id="input_length_description">0</span>/2500
+  </label>
+  <%= f.text_area :item_description, {:class => ["changeable","form-control"],
+                                      :id =>"item_description",
+                                      :maxlength => "2500",
+                                      :rows => 5,
+                                      :data_name => "description"} %>
+</div>

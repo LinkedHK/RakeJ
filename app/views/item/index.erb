@@ -1,0 +1,15 @@
+<div class="container">
+  <%= form_tag(jobs_create_path ) do |f| %>
+
+      <%= label f, t("forms_elements.select_job_category") %>
+      <%= collection_select(:category,:category_id,ItemCategory.all, :id, :name,prompt: true)%>
+
+      <%= label f, t("forms_elements.job_location_city") %>
+      <%= collection_select(:city,:city_id,LocationCity.all, :id, :name,prompt: true)%>
+
+      <%= label f, t("forms_elements.job_location_district") %>
+      <%= collection_select(:city,:city_id,LocationDistrict.all, :id, :name,prompt: true)%>
+
+  <% end %>
+
+</div>

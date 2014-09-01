@@ -1,5 +1,5 @@
 class LocationCity < ActiveRecord::Base
-  has_many :locations
+  self.table_name = "location_city"
   belongs_to :location_country
 
 end

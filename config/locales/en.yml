@@ -21,3 +21,11 @@
 
 en:
   hello: "Hello world"
+  form_input:
+    item:
+      default_select: "Please select"
+      item_title: "Title"
+      item_description: "Description"
+      item_category: "Category"
+      item_location_city: "Location"
+      item_location_district: "District/City area"
