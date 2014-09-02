@@ -35,7 +35,7 @@ RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
 
- # config.include Requests::JsonHelpers
+  config.include Requests::CoreHelpers
   #config.include Users::UserAuthHelper
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your

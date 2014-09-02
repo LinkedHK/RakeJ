@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140901172420) do
+ActiveRecord::Schema.define(version: 20140902114427) do
 
   create_table "category_description", force: true do |t|
     t.integer "item_category_id"
@@ -52,9 +52,12 @@ ActiveRecord::Schema.define(version: 20140901172420) do
   end
 
   create_table "item_tags", force: true do |t|
-    t.string  "name",    limit: 15
-    t.integer "item_id"
+    t.integer  "item_id"
+    t.string   "tag_text",  limit: 40
+    t.datetime "tag_added"
   end
+
+  add_index "item_tags", ["tag_added"], name: "index_item_tags_on_tag_added", using: :btree
 
   create_table "items", force: true do |t|
     t.integer  "user_id"
@@ -96,6 +99,10 @@ ActiveRecord::Schema.define(version: 20140901172420) do
 
   add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true, using: :btree
   add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
+
+  create_table "tag_list", force: true do |t|
+    t.string "name", limit: 15
+  end
 
   create_table "users", force: true do |t|
     t.string   "first_name"

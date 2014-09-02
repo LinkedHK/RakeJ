@@ -17,11 +17,14 @@ FactoryGirl.define do
     locale "en_US"
   end
 
-
   factory :category_description do |f|
     association :item_category
     name "Tech"
     locale "en_US"
+  end
+
+  factory :item_tag do |t|
+    tag_text "tech,sales,marketing"
   end
 
 

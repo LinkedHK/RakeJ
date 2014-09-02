@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   scope "/item" do
     get "/new", to: "item#new", as: 'item_new'
     post "/create", to: "item#create", as: 'item_create'
+    post "/screate", to: "item#screate", as: 'item_screate'
   end
 
   scope "/location" do
