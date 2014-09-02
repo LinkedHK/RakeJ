@@ -18,6 +18,8 @@ class ItemController < ApplicationController
   end
 
   def create
+
+    puts "Create Params: #{create_params.inspect}"
   creator = Item.new(create_params)
   puts "params #{params.inspect}"
 
@@ -26,6 +28,7 @@ class ItemController < ApplicationController
   category = ItemCategory.find_by(id: params[:category][:item_category_id])
   city = LocationCity.find_by(id: params[:location][:city])
   district = LocationDistrict.find_by(id: params[:location][:district])
+
   creator.item_location = ItemLocation.new(location_city: city,location_district: district)
   creator.item_category = category
 

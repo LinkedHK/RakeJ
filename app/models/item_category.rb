@@ -9,5 +9,16 @@ class ItemCategory < ActiveRecord::Base
   belongs_to :parent,class_name: "ItemCategory"
 
 
+=begin
+Table: item_categories
+  Columns:
+  id	int(11) AI PK
+  parent_id	int(11)
+  enabled	tinyint(1)
+
+=end
+
+
+
 
 end

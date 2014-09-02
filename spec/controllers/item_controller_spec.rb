@@ -14,11 +14,12 @@ RSpec.describe ItemController, :type => :controller do
   describe "Basic Actions" do
 
     it "Create a new item" do
-      item_attr = FactoryGirl.build(:item_with_description).attributes
 
-      puts "!!!!!!!Item Attr #{item_attr}"
+
+      category_nest = FactoryGirl.create(:item_category)
+      location_nest = FactoryGirl.build(:item_location).attributes
       expect{
-        post :create, {item: item_attr}
+        post :create, {item: { :description => FactoryGirl.build(:item_description).attributes }, category:  { :item_category_id => category_nest.id}, location: location_nest}
       }.to change(Item, :count).by(1)
 
     end
