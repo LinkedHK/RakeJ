@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.4'
+gem 'rails', '4.1.5'
 # Use mysql as the database for Active Record
 #gem 'pg'
 gem 'mysql2'
@@ -24,13 +24,13 @@ group :test do
   #gem 'travis'
 end
 
-
+group :development, :test do
+  gem  'colorize', :git => "git://github.com/fazibear/colorize.git"
+end
 group :development do
   gem 'guard'
   gem 'guard-rspec'
   gem 'pry'
-  gem 'colorize'
-
   #gem 'cf'
 end
 group :production,:development do

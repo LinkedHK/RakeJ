@@ -16,9 +16,7 @@ class ItemController < ApplicationController
 
   def create
 
-    puts " Create Params!!!!!!!!!!!!! #{  create_params.inspect }"
     item = Item.new(create_params)
-
     item.save
     if item.errors
       render :json => {:result => 0, :info => item.errors}
@@ -76,7 +74,7 @@ class ItemController < ApplicationController
 
 
   params.require(:item).permit(:item_category_id, item_descriptions_attributes: [ :item_title,:description_text ] ,
-                        item_location_attributes: [ :location_city_id, :location_district_id],
+                        item_location_attributes: [ :location_country_id, :location_city_id, :location_district_id],
                         item_tags_attributes: :tag_text
                       )
   end
