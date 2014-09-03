@@ -4,12 +4,9 @@ FactoryGirl.define do
       country  = FactoryGirl.create(:location_country)
       city = country.location_cities.first
       district = city.location_districts.first
-      f.location_country_id = country.id
-      f.s_country = country.name
-      f.location_city_id = city.id
-      f.s_city = city.name
-      f.s_district = district.name
-      f.location_district_id = district.id
+      f.location_country = country
+      f.location_city = city
+      f.location_district = district
     end
   end
 

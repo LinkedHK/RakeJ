@@ -13,7 +13,7 @@ FactoryGirl.define do
 
   factory :item_description  do |f|
     item_title "Item Title"
-    item_description "Item Description"
+    description_text "Item Description"
     locale "en_US"
   end
 
@@ -22,7 +22,6 @@ FactoryGirl.define do
     name "Tech"
     locale "en_US"
   end
-
   factory :item_tag do |t|
     tag_text "tech,sales,marketing"
   end

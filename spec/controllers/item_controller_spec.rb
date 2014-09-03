@@ -18,15 +18,24 @@ RSpec.describe ItemController, :type => :controller do
     end
 
     it "Create a new item" do
-      category_nest = FactoryGirl.create(:item_category)
+      category_nest = FactoryGirl.create(:item_category).attributes
       location_nest = FactoryGirl.build(:item_location).attributes
+      description_nest = FactoryGirl.build(:item_description).attributes
+      tags_nest = FactoryGirl.build(:item_tag).attributes
+
+
       expect{
-        post :create, {item: { :description => FactoryGirl.build(:item_description).attributes },
-                       category:  { :item_category_id => category_nest.id},
-                       location: location_nest
-                  }
-      }.to change(ItemLocation,:count).by(1)
-          #change(ItemTag,:count).by(3)
+        post :create,item: {:item_descriptions_attributes=>{0=> description_nest },
+                            :item_category_id =>category_nest[:id],
+                            :item_tags_attributes=>{0=>{:tag_text=>tags_nest[:tag_text]}},
+                            :item_location_attributes=>{
+                                :location_city_id=>location_nest[:location_city_id],
+                                :location_district_id=>location_nest[:location_district_id]
+                            },
+        }
+      }.to change(Item,:count).by(1)
+
+
 
     end
 

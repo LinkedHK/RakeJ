@@ -2,7 +2,7 @@
   <label>
     <%= t("form_input.item.item_location_city") %>
   </label>
-  <%= f.collection_select(:location_city, LocationCity.all, :id, :name, {prompt: t("form_input.item.default_select") },
+  <%= f.collection_select(:location_city_id, LocationCity.all, :id, :name, {prompt: t("form_input.item.default_select") },
                           {
           class: "form-control",
           id: "location_city"
@@ -14,7 +14,7 @@
   <label>
     <%= t("form_input.item.item_location_district") %>
   </label>
-  <%= f.collection_select(:location_district, LocationDistrict.none, :id, :name, {prompt: t("form_input.item.default_select") },
+  <%= f.collection_select(:location_district_id, LocationDistrict.none, :id, :name, {prompt: t("form_input.item.default_select") },
                           {
                                   class: "form-control",
                                   id: "location_district"
