@@ -1,8 +1,7 @@
-(function(){
+(function(window, document, undefined){
 
 
     var self = {
-
         getDistricts : function(id,callback){
             $.ajax({
                 method: 'GET',
@@ -12,93 +11,66 @@
                 .done(function(data){
                     return callback(data);
                 })
+        },
+        loadJs : function(url, callback, options) {
+            options = options || {};
+            var element = document.getElementsByTagName("head")[0] || document.documentElement;
+            /** @type {Element} */
+            var activeClassName = document.createElement("script");
+            /** @type {boolean} */
+            var s = false;
+            /** @type {string} */
+            activeClassName.src = url;
+            if (options.charset) {
+                activeClassName.charset = options.charset;
+            }
+            if ("async" in options) {
+                activeClassName.async = options.async || "";
+            }
+            /** @type {function (): undefined} */
+            activeClassName.onerror = activeClassName.onload = activeClassName.onreadystatechange = function() {
+                if (!s) {
+                    if (!this.readyState || (this.readyState == "loaded" || this.readyState == "complete")) {
+                        /** @type {boolean} */
+                        s = true;
+                        if (callback) {
+                            callback();
+                        }
+                        /** @type {null} */
+                        activeClassName.onerror = activeClassName.onload = activeClassName.onreadystatechange = null;
+                        element.removeChild(activeClassName);
+                    }
+                }
+            };
+            element.insertBefore(activeClassName, element.firstChild);
+        },
+
+        escapeHtml: function(val){
+            var entityMap = {
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': '&quot;',
+                "'": '&#39;',
+                "/": '&#x2F;'
+            };
+
+            return String(val).replace(/[&<>"'\/]/g, function (s) {
+                return entityMap[s];
+            });
+        },
+
+        stripHtml : function(val){
+            return String(val).replace(/[&<>"'\/]/g,"");
+        },
+
+        escapeRegExp : function(str){
+            // http://stackoverflow.com/questions/3446170/escape-string-for-use-in-javascript-regex/6969486#6969486
+
+
+            return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
         }
     };
+    window.RjApp = self
 
-    window.WQ = self;
-
-})();
-
-$(function(){
-
-function ItemCreation(){
-    this.$selectCity = $("#location_city");
-    this.$selectDistrict = $("#location_district");
-    /*@Todo Dump Solution!*/
-    this.default_text = "Please select";
-    this.initListeners();
-}
-
-ItemCreation.prototype.initListeners = function(){
-    this.onCityChange();
-    this.onDescChange();
-    this.OnItemSubmit();
-
-};
-
- ItemCreation.prototype.sTemplate = function(data){
-        var html = "";
-        html +=  "<option value=''>" + this.default_text + "</option>";
-        if(data.districts.length > 0){
-            $.each(data.districts,function(i,item){
-                html += "<option value='" + item.id +"'>"+ item.name +"</option>"
-            });
-        }
-        return html;
-  };
-
- ItemCreation.prototype.onCityChange = function(){
-        var self = this;
-        var districts = [];
-        self.$selectCity.on('change',function(){
-            var value = this.value;
-            if(!value) return;
-            if(districts[value]){
-                self.$selectDistrict.html(districts[value]);
-            }else{
-                WQ.getDistricts(value,function(data){
-                    districts[value] = self.sTemplate(data);
-                    self.$selectDistrict.html(districts[value]);
-                });
-            }
-        });
- };
-
- ItemCreation.prototype.onDescChange = function(){
-         $(".changeable").on('keyup',function(){
-           var name = $(this).attr("data_name");
-             $("#input_length_"+name).text(this.value.length);
-        });
-};
-
- ItemCreation.prototype.OnItemSubmit = function(){
-     $("#new_item_form").on('submit',function(e){
-         e.preventDefault();
-         var content = $(this).serialize();
-         $.ajax({
-             url: "/item/create",
-             data: content,
-             dataType: "json",
-             method: "POST",
-             error: function(){
-                 alert("Some error. Please try again.")
-             }
-         })
-             .done(function(response){
-
-                 console.log(response);
-             })
-     });
-
-
-
-
-};
-
-
-
-
-
- var item = new ItemCreation();
-
-});
+})(window, document);

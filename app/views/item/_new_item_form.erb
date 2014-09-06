@@ -1,3 +1,4 @@
+
 <%= form_for(@item,{:url => :item_create,  :html => { :id => "new_item_form"}}) do|f| %>
     <%= f.fields_for :item_descriptions do |builder|%>
         <%= render "new_item_descr_field", :f => builder %>
@@ -19,7 +20,7 @@
         <%= t("form_input.item.item_tags") %>
       </label>
       <%= f.fields_for :item_tags  do |builder| %>
-          <%= builder.text_field :tag_text,{class: "form-control"} %>
+          <%= builder.text_field :tag_text,{class:[ "form-control","taggable"], id: "tags_editor",value: ""} %>
       <% end%>
 
     </div>

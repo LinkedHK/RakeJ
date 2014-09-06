@@ -1,0 +1,52 @@
+.input_text, .tagsSet_wrapper {
+    padding: 4px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #848484 #c1c1c1 #e1e1e1 #c1c1c1;
+    background: #fff;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+}
+.tagsSet_wrapper {
+    min-height: 18px;
+    width: 350px;
+    line-height: 1.3;
+    display: inline-block;
+}
+.tagsBox{
+    padding: 2px 1px 2px 4px;
+    background: #f4f4f4;
+    border: 1px solid #ddd;
+    margin: 0 3px 2px 0;
+    font-size: 11px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.tagsBox_closetag:hover{
+    color: #454545;
+
+}
+
+.tagsBox_closetag {
+    margin-left: 2px;
+    display: inline-block;
+    padding: 0 3px;
+    color: #c7c7c7;
+    font-weight: bold;
+}
+.tagsBox:hover {
+    border-color: #bdbdbd;
+}
+.tagsSet_wrapper li {
+    display: inline-block;
+}
+
+.tagsSet_input input {
+    border: 0px;
+    outline: 0;
+}
+
