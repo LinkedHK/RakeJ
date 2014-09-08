@@ -28,17 +28,18 @@
     TagEditor.prototype.OnEditRag = function () {
         var self = this;
         this.$fakeTag.on('keyup',function(e){
-                if(self.isBackspace(e)){
-                    self.handleBackspace();
-                }else{
-                    self.HandleInput(this.value);
-                }
+                 self.HandleInput(this.value);
         });
+      this.$fakeTag.on('keydown',function(e){
+
+          if(self.isBackspace(e)){
+              self.handleBackspace();
+          }
+      })
     };
     TagEditor.prototype.OnTagSetClick = function(){
         var self = this;
         this.$tagSet.on("click",function(){
-
             self.$fakeTag.focus();
         });
     };
@@ -51,7 +52,7 @@
         /*
             8 backspace  46 Delete
          */
-        return (e.keyCode == 8 || e.keyCode == 46);
+        return ((e.keyCode == 8 || e.keyCode == 46) && this.$fakeTag.val()=== '');
     };
     TagEditor.prototype.HandleInput = function(v){
         var self = this;

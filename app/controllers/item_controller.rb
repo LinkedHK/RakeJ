@@ -15,7 +15,6 @@ class ItemController < ApplicationController
   end
 
   def create
-
     item = Item.new(create_params)
     item.save
     if item.errors
