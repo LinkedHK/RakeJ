@@ -69,6 +69,13 @@
 
 
             return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+        },
+        objSize : function(array){
+            var size = 0, key;
+            for (key in array) {
+                if (array.hasOwnProperty(key)) size++;
+            }
+            return size;
         }
     };
     window.RjApp = self

@@ -18,6 +18,7 @@
     <div class="form-group">
       <label>
         <%= t("form_input.item.item_tags") %>
+        <span id="tag_number">0</span>/4
       </label>
       <%= f.fields_for :item_tags  do |builder| %>
           <%= builder.text_field :tag_text,{class:[ "form-control","taggable"], id: "tags_editor",value: ""} %>

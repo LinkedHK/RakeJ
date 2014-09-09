@@ -1,15 +1,9 @@
-
-
 class ItemLocation < ActiveRecord::Base
   self.table_name = "item_location"
-  belongs_to :item
+  belongs_to :item, inverse_of: :item_location
   belongs_to :location_country
   belongs_to :location_city
   belongs_to :location_district
-
-  delegate :name, to: :location_city, prefix: true
-  delegate :name, to: :location_district, prefix: true
-
 
 
 =begin

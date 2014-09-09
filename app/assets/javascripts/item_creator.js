@@ -5,8 +5,11 @@ $(function(window){
         this.$selectDistrict = option.selectDistrict || $("#location_district");
         this.$tagsEditor = option.tagsEditor || $("#tags_editor");
         this.$formUrl = option.formUrl || "/item/create";
+        this.$tagIndicator = option.tagIndicator  || $("#tag_number");
         /*@Todo Dump Solution!*/
         this.default_text = "Please select";
+
+
         this.initListeners();
     }
 
@@ -73,7 +76,11 @@ $(function(window){
                 })
         });
         ItemCreation.prototype.OnTagEdit = function(){
+            var self = this;
             var tagEditor = new TagEditor({inputTag:  self.$tagsEditor,maxTag: 4 });
+            tagEditor.OnChangeTag(function(e){
+                    self.$tagIndicator.text(e.tagNumber);
+            });
         }
     };
     var item = new ItemCreation({
@@ -81,6 +88,7 @@ $(function(window){
         selectCity: $("#location_city"),
         selectDistrict: $("#location_district"),
         tagsEditor: $("#tags_editor"),
+        tagIndicator: $("#tag_number"),
         formUrl: "/item/create"
     });
 

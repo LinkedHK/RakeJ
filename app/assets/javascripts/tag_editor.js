@@ -7,6 +7,10 @@
         this.$tagSet = $("#tagsSet");
         this.$fakeTag = $("#fakeTag");
         this.tagsCache = [];
+        this.tagAddListeners = [];
+        this.tagRemoveListeners = [];
+
+        this.tagChangeListeners = [];
         this.initListeners();
     }
     TagEditor.prototype._initTags = function () {
@@ -25,15 +29,45 @@
         this.OnTagSetClick();
 
     };
+    TagEditor.prototype.OnTagAdd = function(callback){
+        this.tagAddListeners.push(callback);
+    };
+
+    TagEditor.prototype.OnTagRemove  = function(callback){
+        this.tagRemoveListeners.push(callback);
+    };
+    TagEditor.prototype._notifyAdd = function(e) {
+        this.tagAddListeners.forEach(function(callback){
+            callback(e);
+        })
+    };
+
+    TagEditor.prototype.OnChangeTag = function(callback){
+        this.tagAddListeners.push(callback);
+
+    };
+    TagEditor.prototype._notifyChangeTag = function(e) {
+        this.tagAddListeners.forEach(function (callback) {
+            callback(e);
+
+        });
+    };
+
+    TagEditor.prototype._notifyAdd = function(e){
+        this.tagRemoveListeners.forEach(function(callback){
+            callback(e);
+
+        });
+    };
+
     TagEditor.prototype.OnEditRag = function () {
         var self = this;
         this.$fakeTag.on('keyup',function(e){
-                 self.HandleInput(this.value);
+                 self._handleInput(this.value);
         });
       this.$fakeTag.on('keydown',function(e){
-
           if(self.isBackspace(e)){
-              self.handleBackspace();
+              self._handleBackspace();
           }
       })
     };
@@ -43,7 +77,7 @@
             self.$fakeTag.focus();
         });
     };
-    TagEditor.prototype.handleBackspace = function(){
+    TagEditor.prototype._handleBackspace = function(){
         var i = this.$tagSet.children("li.tagsBox").last();
         if(i) this.deleteTag(i);
     };
@@ -54,13 +88,13 @@
          */
         return ((e.keyCode == 8 || e.keyCode == 46) && this.$fakeTag.val()=== '');
     };
-    TagEditor.prototype.HandleInput = function(v){
+    TagEditor.prototype._handleInput = function(v){
         var self = this;
         if(v.match(/[,|\s]/)){
-            this.handleNewTags();
+            this._handleNewTags();
         }
     };
-    TagEditor.prototype.handleNewTags = function(){
+    TagEditor.prototype._handleNewTags = function(){
         var self = this;
         var val = this.$fakeTag.val().split(/[,|\s]/);
         val.forEach(function(i){
@@ -79,16 +113,23 @@
         });
     };
 
+    TagEditor.canAddTag = function(){
+        return !this.exceedTagNumber();
+    };
+
     TagEditor.prototype.deleteTag = function($element) {
         var i = $element.attr('val_data');
         delete this.tagsCache[i];
-        this.tagNumber--;
         $element.remove();
         this.updateInput();
+        this.notifyListeners();
     };
 
-
-
+    TagEditor.prototype.notifyListeners = function(){
+        var e = { tagNumber: this.getCacheSize() };
+        this._notifyChangeTag(e);
+        this._notifyAdd(e)
+    };
     TagEditor.prototype.addTag = function (i) {
         if(this.exceedTagNumber()) return;
         i = window.RjApp.escapeHtml(i);
@@ -96,8 +137,12 @@
         var template = this.buildLiTemplate(i);
         this.addToCache(i);
         $(template).insertBefore(".tagsSet_input");
-        this.tagNumber++;
         this.updateInput();
+        this.notifyListeners();
+    };
+
+    TagEditor.prototype.getCacheSize = function(){
+            return window.RjApp.objSize(this.tagsCache);
     };
 
     TagEditor.prototype.buildLiTemplate = function(i){
@@ -106,9 +151,8 @@
             +
             "</li>";
     };
-
     TagEditor.prototype.exceedTagNumber = function(){
-        return  this.tagNumber == this.maxTag;
+        return   this.getCacheSize()  == this.maxTag;
     };
     TagEditor.prototype.updateInput = function(){
         var result = "";

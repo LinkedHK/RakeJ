@@ -1,11 +1,8 @@
 class ItemTag < ActiveRecord::Base
   belongs_to :item
-
   before_create do
-
     self.tag_added = DateTime.now
   end
-
 
 =begin
 Table: item_tags

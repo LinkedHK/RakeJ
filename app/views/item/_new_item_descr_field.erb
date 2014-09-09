@@ -6,7 +6,8 @@
   <%= f.text_field :item_title, {:class => ["changeable","form-control"],
                                  :id => "item_title",
                                  :maxlength => "100",
-                                 :data_name => "title"} %>
+                                 :data_name => "title",
+                                 :required => true} %>
 </div>
 <div class="form-group">
   <label class="disabled">
@@ -17,5 +18,7 @@
                                       :id =>"item_description",
                                       :maxlength => "2500",
                                       :rows => 5,
-                                      :data_name => "description"} %>
+                                      :data_name => "description",
+                                      :required => true} %>
+
 </div>
