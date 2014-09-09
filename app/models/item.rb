@@ -12,17 +12,16 @@ class Item < ActiveRecord::Base
     (attribute[:item_title].blank? ||
     attribute[:description_text].blank?)
   end
-
   def item_tags_attributes=(tags)
     if tags["0"]
       tag_set = tags["0"][:tag_text].split(",")
       if tag_set.length > 0
-          tag_set.each do |tag|
+          tag_set.each_with_index do |tag,i|
+            break if i == 4
           item_tags.build(tag_text: tag)
         end
       end
     end
-
   end
 
   #def item_tags_attributes

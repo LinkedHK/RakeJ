@@ -52,6 +52,14 @@ RSpec.describe ItemController, :type => :controller do
       }.to change(ItemTag,:count).by(3)
     end
 
+    it "Max number of tags " do
+      @tags_nest = FactoryGirl.build(:item_long_tag).attributes
+      expect{
+        post :create,item: {item_tags_attributes: {"0" => @tags_nest}
+        }
+      }.to change(ItemTag,:count).by(4)
+    end
+
   end
 
 

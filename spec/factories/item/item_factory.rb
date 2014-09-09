@@ -24,6 +24,9 @@ FactoryGirl.define do
   end
   factory :item_tag do |t|
     tag_text "tech,sales,marketing"
+    factory :item_long_tag do |t|
+      tag_text "tech,sales,marketing,something1, something2,something4"
+    end
   end
 
 
