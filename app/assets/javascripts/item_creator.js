@@ -70,20 +70,9 @@ $(function(window){
             $.ajax({
                 url: self.$formUrl,
                 data: content,
-                dataType: "json",
-                method: "POST",
-                error: function(response){
-                    self.disableButton(false);
-                    if(response.responseJSON.info){
-                        alert(response.responseJSON.info);
-                    }else{
-                        alert("Unknown error occurred. Please reload page and try again.");
-                    }
-                }
+                dataType: "script",
+                method: "POST"
             })
-                .done(function(response){
-                    console.log(response);
-                })
         });
         ItemCreation.prototype.OnTagEdit = function(){
             var self = this;
@@ -102,5 +91,13 @@ $(function(window){
         formUrl: "/item/create",
         errorsList: $("#errors_list")
     });
+
+    $("#demo_submit").on("click",function(){
+        $.ajax({
+            url: '/item/demo',
+            dataType: "script",
+            method: "POST"
+        });
+    })
 
 });

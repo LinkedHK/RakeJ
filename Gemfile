@@ -21,6 +21,9 @@ group :test do
   gem "factory_girl_rails", "~> 4.0"
   gem 'faker'
   gem 'codeclimate-test-reporter'
+  gem "capybara-webkit"
+
+
   #gem 'travis'
 end
 

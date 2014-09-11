@@ -32,6 +32,7 @@ en:
       item_tags: "Tags"
       item_tags_separate: "Use commas, spaces to separate tags."
     validation:
+      successful: "Successful"
       unknown_error: "Unknown error occurred. Please reload page and try again."
       empty_title: "Please enter title."
       empty_description: "Description can't be blank."

@@ -11,15 +11,22 @@ class ItemController < ApplicationController
   end
 
   def create
-    item = Item.new(create_params)
+    @item = Item.new(create_params)
+    @saved = @item.save
+    respond_to do |format|
+      if @saved
+        format.json {render json:  { :result  => 1, :info => "Successfully created!"}}
 
+      else
+        format.json { render json: { :result => 0, :info => t("form_input.validation.unknown_error"), validation_error: @item.errors}, status: 422 }
+      end
+      format.js { render 'item/shared/item_creation_result' }
+    end
+  end
 
-    if item.save
-      render :json => {:result => 1, :info => "Successfully created!"}
-    else
-
-      puts " Errors #{item.errors.to_json}" .colorize(:red)
-      render :json => {:result => 0, :info => t("form_input.validation.unknown_error"), validation_error: item.errors },:status => 422
+  def demo
+    respond_to do |format|
+      format.js{ render  'item/shared/sucess_message'}
     end
   end
 
