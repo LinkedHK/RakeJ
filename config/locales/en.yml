@@ -33,3 +33,7 @@ en:
       item_tags_separate: "Use commas, spaces to separate tags."
     validation:
       unknown_error: "Unknown error occurred. Please reload page and try again."
+      empty_title: "Please enter title."
+      empty_description: "Description can't be blank."
+      category_invalid: "Please select category."
+      location_invalid: "Please select location ( location, district )"

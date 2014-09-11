@@ -15,12 +15,13 @@ class Item < ActiveRecord::Base
    item.item_descriptions.build
    item.build_item_location
    item.item_tags.build
+
     item
   end
   def check_category
     category_id =  ItemCategory.find_by(id: self.item_category_id )
     unless category_id
-      errors.add(:item_category, "Please select category.")
+      errors.add(:item_category, I18n.t("form_input.validation.category_invalid"))
     end
   end
 

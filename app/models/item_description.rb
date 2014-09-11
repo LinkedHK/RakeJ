@@ -1,9 +1,9 @@
 class ItemDescription < ActiveRecord::Base
   self.table_name = 'item_description'
   belongs_to :item
-  validates_presence_of :item_title, :description_text
 
-
+  validates_presence_of :item_title , message: I18n.t("form_input.validation.empty_title")
+  validates_presence_of :description_text, message:  I18n.t("form_input.validation.empty_description")
 
 =begin
 Table: item_description

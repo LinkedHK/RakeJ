@@ -18,8 +18,8 @@ class ItemController < ApplicationController
       render :json => {:result => 1, :info => "Successfully created!"}
     else
 
-      puts " Errors #{item.errors.inspect}" .colorize(:red)
-      render :json => {:result => 0, :info => t("form_input.validation.unknown_error")},:status => 422
+      puts " Errors #{item.errors.to_json}" .colorize(:red)
+      render :json => {:result => 0, :info => t("form_input.validation.unknown_error"), validation_error: item.errors },:status => 422
     end
   end
 

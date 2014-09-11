@@ -13,7 +13,7 @@ class ItemLocation < ActiveRecord::Base
     self.location_country = LocationCountry.find_by(id: self.location_country_id) if self.location_country_id
     self.location_district = LocationDistrict.find_by(id: self.location_district_id) if self.location_district_id
    if !self.location_city || !self.location_district
-     errors.add(:base,'Please select location ( city, district )')
+     errors.add(:base,I18n.t("form_input.validation.location_invalid"))
    end
   end
 =begin
