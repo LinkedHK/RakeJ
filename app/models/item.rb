@@ -8,10 +8,23 @@ class Item < ActiveRecord::Base
   accepts_nested_attributes_for :item_descriptions
   accepts_nested_attributes_for :item_location
 
-  def description_empty(attribute)
-    (attribute[:item_title].blank? ||
-    attribute[:description_text].blank?)
+  validate :check_category
+
+  def self.build
+   item = self.new
+   item.item_descriptions.build
+   item.build_item_location
+   item.item_tags.build
+    item
   end
+  def check_category
+    category_id =  ItemCategory.find_by(id: self.item_category_id )
+    unless category_id
+      errors.add(:item_category, "Please select category.")
+    end
+  end
+
+
   def item_tags_attributes=(tags)
     if tags["0"]
       tag_set = tags["0"][:tag_text].split(",")

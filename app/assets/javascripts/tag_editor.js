@@ -119,6 +119,7 @@
 
     TagEditor.prototype.deleteTag = function($element) {
         var i = $element.attr('val_data');
+        i = window.RjApp.escapeHtml(i);
         delete this.tagsCache[i];
         $element.remove();
         this.updateInput();

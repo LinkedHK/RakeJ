@@ -30,3 +30,6 @@ en:
       item_location_city: "Location"
       item_location_district: "District/City area"
       item_tags: "Tags"
+      item_tags_separate: "Use commas, spaces to separate tags."
+    validation:
+      unknown_error: "Unknown error occurred. Please reload page and try again."

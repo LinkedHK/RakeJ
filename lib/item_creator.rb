@@ -1,21 +1,35 @@
 class ItemCreator
-
   attr_accessor :errors
 
+  def self.build
+    @item = Item.new
+    @item.item_descriptions.build
+    @item.build_item_location
+    @item.item_tags.build
+  end
+
+  def self.build_errors(errors)
+
+    errors.each do |k, v|
+      puts "Errors !!#{k} : #{v}" .colorize(:red)
+
+    end
+    "Error!"
+
+  end
 
   def self.create(opts)
     self.new(opts).create
   end
 
-
   def initialize(opts)
     @opts = opts
-
+    puts " Params #{opts.inspect}" .colorize(:red)
   end
 
   def create
 
-    params = setup_item_params
+  params = setup_item_params
   @item = Item.new(item_categories_id: params[:category])
   @item.save
   @item.item_descriptions([item_id: @item.id,
@@ -45,6 +59,13 @@ class ItemCreator
     item_params[:location_country] = country if country.present?
     item_params[:location_city] = city if city.present?
     item_params[:location_district] = district if district.present?
+
+=begin
+
+ Params {"item_category_id"=>"3", "item_descriptions_attributes"=>[{"item_title"=>"Item Title", "description_text"=>"Item Description"}], "item_location_attributes"=>{"location_city_id"=>"3", "location_district_id"=>"3"}, "item_tags_attributes"=>{"0"=>{"tag_text"=>"tech,sales,marketing"}}}
+
+
+=end
 
     item_params
   end

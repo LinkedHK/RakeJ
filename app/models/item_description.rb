@@ -3,6 +3,8 @@ class ItemDescription < ActiveRecord::Base
   belongs_to :item
   validates_presence_of :item_title, :description_text
 
+
+
 =begin
 Table: item_description
   Columns:

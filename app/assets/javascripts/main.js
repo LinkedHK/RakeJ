@@ -66,8 +66,6 @@
 
         escapeRegExp : function(str){
             // http://stackoverflow.com/questions/3446170/escape-string-for-use-in-javascript-regex/6969486#6969486
-
-
             return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
         },
         objSize : function(array){

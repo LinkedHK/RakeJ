@@ -1,5 +1,8 @@
-
 <%= form_for(@item,{:url => :item_create,  :html => { :id => "new_item_form"}}) do|f| %>
+
+    <div id="errors_list">
+
+    </div>
     <%= f.fields_for :item_descriptions do |builder|%>
         <%= render "new_item_descr_field", :f => builder %>
     <% end%>
@@ -7,14 +10,12 @@
       <label>
         <%= t("form_input.item.item_category") %>
       </label>
-          <%= f.collection_select(:item_category_id, CategoryDescription.all.where(:locale => 'en_US').order(:name), :item_category_id, :name, {prompt: t("form_input.item.default_select") },{class: "form-control"})%>
+          <%= f.collection_select(:item_category_id, CategoryDescription.all.where(:locale => 'en_US').order(:name), :item_category_id, :name, {prompt: t("form_input.item.default_select") },{class: "form-control", required: true})%>
     </div>
 
     <%= f.fields_for :item_location  do |builder| %>
         <%= render "field_location", :f => builder %>
     <% end%>
-
-
     <div class="form-group">
       <label>
         <%= t("form_input.item.item_tags") %>
@@ -23,12 +24,8 @@
       <%= f.fields_for :item_tags  do |builder| %>
           <%= builder.text_field :tag_text,{class:[ "form-control","taggable"], id: "tags_editor",value: ""} %>
       <% end%>
-
     </div>
-    <input type="submit" class="btn btn-primary btn-lg" />
-
-
-
+    <input type="submit" id="button_submit" class="btn btn-primary btn-lg"  />
 
 
 <% end %>

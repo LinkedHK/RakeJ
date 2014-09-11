@@ -5,7 +5,8 @@
   <%= f.collection_select(:location_city_id, LocationCity.all, :id, :name, {prompt: t("form_input.item.default_select") },
                           {
           class: "form-control",
-          id: "location_city"
+          id: "location_city",
+          required: true
                           })
 
   %>
@@ -17,7 +18,9 @@
   <%= f.collection_select(:location_district_id, LocationDistrict.none, :id, :name, {prompt: t("form_input.item.default_select") },
                           {
                                   class: "form-control",
-                                  id: "location_district"
+                                  id: "location_district",
+                                  required: true
+
                           })
 
   %>

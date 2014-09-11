@@ -1,5 +1,8 @@
 require 'rails_helper'
+
 RSpec.describe ItemController, :type => :controller do
+
+
 
   describe "Page Accessibility" do
 
@@ -12,18 +15,15 @@ RSpec.describe ItemController, :type => :controller do
 
     before(:all) do
       query_log
-
+    end
+    before(:each) do
+      @category_nest = FactoryGirl.create(:item_category).attributes
+      @location_nest = FactoryGirl.build(:item_location,:with_locations).attributes
+      @description_nest = FactoryGirl.build(:item_description).attributes
+      @tags_nest = FactoryGirl.build(:item_tag).attributes
     end
 
     it "Create a new item" do
-
-      @category_nest = FactoryGirl.create(:item_category).attributes
-      @location_nest = FactoryGirl.build(:item_location).attributes
-      @description_nest = FactoryGirl.build(:item_description).attributes
-      @tags_nest = FactoryGirl.build(:item_tag).attributes
-
-      puts "Description Nest: #{ @description_nest.inspect }" .colorize(:yellow)
-
       expect{
         post :create,item: {item_descriptions_attributes: [@description_nest],
                             item_category_id: @category_nest["id"],
@@ -35,7 +35,6 @@ RSpec.describe ItemController, :type => :controller do
       expect(ItemTag.all.count).to eq(3)
       expect(ItemDescription.all.count).to eq(1)
     end
-
     it "Fail to create description because title is blank" do
       @description_nest = FactoryGirl.build(:item_description,item_title: "").attributes
       expect{
@@ -45,21 +44,47 @@ RSpec.describe ItemController, :type => :controller do
     end
 
     it "Testing valid tag " do
-      @tags_nest = FactoryGirl.build(:item_tag).attributes
-      expect{
-        post :create,item: {item_tags_attributes: {"0" => @tags_nest}
-        }
-      }.to change(ItemTag,:count).by(3)
-    end
+      tags_nest = FactoryGirl.build(:item_tag).attributes
 
-    it "Max number of tags " do
-      @tags_nest = FactoryGirl.build(:item_long_tag).attributes
       expect{
-        post :create,item: {item_tags_attributes: {"0" => @tags_nest}
-        }
+        post :create,item: {item_descriptions_attributes: [@description_nest],
+                            item_category_id: @category_nest["id"],
+                            item_tags_attributes: {"0" => tags_nest},
+                            item_location_attributes: @location_nest}
+        }.to change(ItemTag,:count).by(3)
+    end
+    it "Max number of tags " do
+      tags_nest = FactoryGirl.build(:item_long_tag).attributes
+      expect{
+        post :create,item: {item_descriptions_attributes: [@description_nest],
+                            item_category_id: @category_nest["id"],
+                            item_tags_attributes: {"0" => tags_nest},
+                            item_location_attributes: @location_nest}
       }.to change(ItemTag,:count).by(4)
     end
 
+    it "Fail to add Location because of fake city" do
+      @location_nest["location_city_id"] = -2
+     puts " Location nest #{ @location_nest.inspect }" .colorize(:red)
+      expect{
+        post :create,item:   {item_descriptions_attributes: [@description_nest],
+                              item_category_id: @category_nest["id"],
+                              item_tags_attributes: {"0" => @tags_nest},
+                              item_location_attributes: @location_nest}
+        }
+        .to change(ItemLocation,:count).by(0)
+    end
+
+    it "Fail to add Location because of fake district" do
+      @location_nest["location_district_id"] = -2
+      expect{
+        post :create,item:   {item_descriptions_attributes: [@description_nest],
+                              item_category_id: @category_nest["id"],
+                              item_tags_attributes: {"0" => @tags_nest},
+                              item_location_attributes: @location_nest}
+      }
+      .to change(ItemLocation,:count).by(0)
+    end
   end
 
 

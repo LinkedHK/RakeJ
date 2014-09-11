@@ -6,8 +6,11 @@ $(function(window){
         this.$tagsEditor = option.tagsEditor || $("#tags_editor");
         this.$formUrl = option.formUrl || "/item/create";
         this.$tagIndicator = option.tagIndicator  || $("#tag_number");
+        this.$buttonSubmit = $("#button_submit");
         /*@Todo Dump Solution!*/
         this.default_text = "Please select";
+
+        this.$formError = option.errorsList || $("#errors_list");
 
 
         this.initListeners();
@@ -55,23 +58,30 @@ $(function(window){
             $(".input_length_"+name).text(this.value.length);
         });
     };
-
+    ItemCreation.prototype.disableButton = function(state){
+        this.$buttonSubmit.toggleClass("disabled",state);
+    };
     ItemCreation.prototype.OnItemSubmit = function(){
         var self = this;
         this.$itemForm.on('submit',function(e){
             e.preventDefault();
+            self.disableButton(true);
             var content = $(this).serialize();
             $.ajax({
                 url: self.$formUrl,
                 data: content,
                 dataType: "json",
                 method: "POST",
-                error: function(){
-                    alert("Some error. Please try again.")
+                error: function(response){
+                    self.disableButton(false);
+                    if(response.responseJSON.info){
+                        alert(response.responseJSON.info);
+                    }else{
+                        alert("Unknown error occurred. Please reload page and try again.");
+                    }
                 }
             })
                 .done(function(response){
-
                     console.log(response);
                 })
         });
@@ -89,7 +99,8 @@ $(function(window){
         selectDistrict: $("#location_district"),
         tagsEditor: $("#tags_editor"),
         tagIndicator: $("#tag_number"),
-        formUrl: "/item/create"
+        formUrl: "/item/create",
+        errorsList: $("#errors_list")
     });
 
 });

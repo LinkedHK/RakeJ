@@ -5,7 +5,17 @@ class ItemLocation < ActiveRecord::Base
   belongs_to :location_city
   belongs_to :location_district
 
+  validate :check_location
 
+
+  def check_location
+    self.location_city = LocationCity.find_by(id: self.location_city_id) if  self.location_city_id
+    self.location_country = LocationCountry.find_by(id: self.location_country_id) if self.location_country_id
+    self.location_district = LocationDistrict.find_by(id: self.location_district_id) if self.location_district_id
+   if !self.location_city || !self.location_district
+     errors.add(:base,'Please select location ( city, district )')
+   end
+  end
 =begin
 Table: item_location
   Columns:

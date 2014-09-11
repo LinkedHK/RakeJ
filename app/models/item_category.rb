@@ -8,6 +8,9 @@ class ItemCategory < ActiveRecord::Base
   belongs_to :parent,class_name: "ItemCategory"
 
 
+
+
+
 =begin
 Table: item_categories
   Columns:

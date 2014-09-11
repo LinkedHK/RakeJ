@@ -1,15 +1,33 @@
 FactoryGirl.define do
   factory :item_location do
-    after(:build) do |f|
-      country  = FactoryGirl.create(:location_country)
-      city = country.location_cities.first
-      district = city.location_districts.first
-      f.location_country = country
-      f.location_city = city
-      f.location_district = district
-    end
+
+   trait :with_locations do
+     after(:build) do |f|
+       found_country = LocationCountry.find_by(name: "Hong Kong")
+       if found_country
+         country = found_country
+       else
+         country  = FactoryGirl.create(:location_country)
+       end
+       city = country.location_cities.first
+       district = city.location_districts.first
+       f.location_country = country
+       f.location_city = city
+       f.location_district = district
+     end
+   end
+
+  trait :fake_city do
+    location_city_id -2
   end
 
+  trait :fake_district do
+    location_district_id -2
+  end
+
+
+
+  end
   factory :location_country do
     name "Hong Kong"
     after(:create) do |location_country|
@@ -24,7 +42,7 @@ FactoryGirl.define do
     end
   end
   factory :location_district do
-    name "Kowloon"
+    name "Central"
     association :location_city
   end
 
