@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140903051632) do
+ActiveRecord::Schema.define(version: 20140916175903) do
 
   create_table "category_description", force: true do |t|
     t.integer "item_category_id"
@@ -21,6 +21,27 @@ ActiveRecord::Schema.define(version: 20140903051632) do
 
   add_index "category_description", ["item_category_id"], name: "index_category_description_on_item_category_id", using: :btree
   add_index "category_description", ["locale"], name: "index_category_description_on_locale", using: :btree
+
+  create_table "field_currency", force: true do |t|
+    t.string  "currency_title",       limit: 5
+    t.string  "currency_symbol",      limit: 5
+    t.string  "currency_description", limit: 50
+    t.string  "currency_code",        limit: 5
+    t.integer "default_currency",                default: 0
+  end
+
+  add_index "field_currency", ["currency_title"], name: "index_field_currency_on_currency_title", unique: true, using: :btree
+  add_index "field_currency", ["default_currency"], name: "index_field_currency_on_default_currency", using: :btree
+
+  create_table "field_rate", force: true do |t|
+    t.integer "item_id"
+    t.integer "rate_number"
+    t.string  "currency",          limit: 10
+    t.string  "currency_info",     limit: 5
+    t.integer "field_currency_id"
+  end
+
+  add_index "field_rate", ["item_id"], name: "index_field_rate_on_item_id", unique: true, using: :btree
 
   create_table "item_categories", force: true do |t|
     t.integer "parent_id", default: -1

@@ -1,0 +1,28 @@
+<div class="form-group">
+  <label>
+    <%= t("form_input.item.item_s") %>
+  </label>
+  <%= f.text_field(:rate_number,{
+          class: "form-control",
+          id: "salary_number"
+  })%>
+
+  <label>
+    <%= t("form_input.item.item_currency") %>
+  </label>
+
+  <%= f.collection_select(:field_currency_id, FieldCurrency.all, :id, :currency_title, {prompt: true,:selected =>  FieldCurrency.default_currency},
+                          {
+                                  class: "form-control",
+                                  id: "currency_field",
+                                  required: true
+
+                          })
+
+  %>
+
+
+
+
+
+ </div>

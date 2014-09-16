@@ -1,0 +1,5 @@
+<%= form_tag(dummy_check_path, :remote => true, :format => :js, :method => :get)   do %>
+    <%= select_tag "type", options_for_select([ "admin", "customer" ], "admin") %>
+    <%= submit_tag "check now" %>
+<% end %>
+<div id="result"></div>

@@ -30,6 +30,8 @@ en:
       item_location_city: "Location"
       item_location_district: "District/City area"
       item_tags: "Tags"
+      item_s: "Salary rate"
+      item_currency: "Currency"
       item_tags_separate: "Use commas, spaces to separate tags."
     validation:
       successful: "Successful"

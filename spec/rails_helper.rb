@@ -3,10 +3,8 @@ ENV["RAILS_ENV"] ||= 'test'
 require 'spec_helper'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
-require 'capybara/rails'
 #require "codeclimate-test-reporter"
 #CodeClimate::TestReporter.start
-Capybara.javascript_driver = :webkit
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
@@ -24,10 +22,12 @@ ActiveRecord::Migration.maintain_test_schema!
 
 require 'paperclip/matchers'
 
+
 RSpec.configure do |config|
 
   # To wrap the anonymous controller
   # http://stackoverflow.com/questions/22055889/how-to-test-a-controller-concern-in-rails-4
+
 
 
   config.infer_base_class_for_anonymous_controllers = true

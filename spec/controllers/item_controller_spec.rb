@@ -16,6 +16,7 @@ RSpec.describe ItemController, :type => :controller do
     before(:all) do
       query_log
     end
+
     before(:each) do
       @category_nest = FactoryGirl.create(:item_category).attributes
       @location_nest = FactoryGirl.build(:item_location,:with_locations).attributes
@@ -23,7 +24,6 @@ RSpec.describe ItemController, :type => :controller do
       @tags_nest = FactoryGirl.build(:item_tag).attributes
       request.env["HTTP_ACCEPT"] = 'application/json'
     end
-
     it "Create a new item" do
       expect{
         post :create,item: {item_descriptions_attributes: [@description_nest],
@@ -45,7 +45,6 @@ RSpec.describe ItemController, :type => :controller do
       }.to change(ItemDescription,:count).by(0)
       resp =  parse_json(response)
       validation_error = resp["validation_error"]
-
       expect(validation_error.length).to eq(1)
       expect(validation_error["item_descriptions.item_title"].length).to eq(1)
       expect(validation_error["item_descriptions.item_title"][0]).to eq(I18n.t("form_input.validation.empty_title"))

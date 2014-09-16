@@ -2,10 +2,6 @@
 # specs live under a `spec` directory, which RSpec adds to the `$LOAD_PATH`.
 # The generated `.rspec` file contains `--require spec_helper` which will cause this
 # file to always be loaded, without a need to explicitly require it in any files.
-#
-# Given that it is always loaded, you are encouraged to keep this file as
-# light-weight as possible. Requiring heavyweight dependencies from this file
-# will add to the boot time of your test suite on EVERY test run, even for an
 # individual file that may not need all of that loaded. Instead, make a
 # separate helper file that requires this one and then use it only in the specs
 # that actually need it.
@@ -14,10 +10,41 @@
 # users commonly want.
 #
 
+#set the default driver
+
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
+require 'capybara'
+require 'database_cleaner'
+require 'capybara/dsl'
+require 'capybara/poltergeist'
+
+
+Capybara.configure do |c|
+  c.javascript_driver = :poltergeist
+  c.default_driver = :poltergeist
+  c.app_host = "http://localhost:3000"
+end
+
+
 RSpec.configure do |config|
+
+
+  #config.include(Capybara::Webkit::RspecMatchers, :type => :feature)
+
+  config.include Capybara::DSL
+
+
+# Given that it is always loaded, you are encouraged to keep this file as
+# light-weight as possible. Requiring heavyweight dependencies from this file
+# will add to the boot time of your test suite on EVERY test run, even for an
+#
+
+  # If you're not using ActiveRecord, or you'd prefer not to run
+  # each of your examples within a transaction, remove the following
+  # line or assign false instead of true.
+ # config.use_transactional_fixtures = false
 
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
@@ -28,6 +55,10 @@ RSpec.configure do |config|
 # get run.
   config.filter_run :focus
   config.run_all_when_everything_filtered = true
+
+  # Clean up and initialize database before
+  # running test exmaples
+
 
   # Many RSpec users commonly either run the entire suite or an individual
   # file, and it's useful to allow more verbose output when running an
@@ -57,6 +88,7 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 
 
+
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
@@ -66,7 +98,6 @@ RSpec.configure do |config|
     #   - http://myronmars.to/n/dev-blog/2012/06/rspecs-new-expectation-syntax
     expectations.syntax = :expect
   end
-
   # rspec-mocks config goes here. You can use an alternate test double
   # library (such as bogus or mocha) by changing the `mock_with` option here.
   config.mock_with :rspec do |mocks|

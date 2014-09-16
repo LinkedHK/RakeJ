@@ -1,8 +1,10 @@
 class Item < ActiveRecord::Base
   has_many :item_tags , :dependent => :destroy
   has_many :item_descriptions,  :dependent => :destroy
+  has_one :field_rate, :dependent => :destroy, inverse_of: :item
   has_one :item_location,  inverse_of: :item,  :dependent => :destroy
   belongs_to :item_category,  inverse_of: :item,class_name: "ItemCategory"
+  attr_accessor :item_tags_list
 
   accepts_nested_attributes_for :item_tags
   accepts_nested_attributes_for :item_descriptions
@@ -15,8 +17,8 @@ class Item < ActiveRecord::Base
    item.item_descriptions.build
    item.build_item_location
    item.item_tags.build
-
-    item
+   item.build_field_rate
+  item
   end
   def check_category
     category_id =  ItemCategory.find_by(id: self.item_category_id )
@@ -25,6 +27,9 @@ class Item < ActiveRecord::Base
     end
   end
 
+  def item_tags_list
+    self.item_tags.map(&:tag_text).join(", ")
+  end
 
   def item_tags_attributes=(tags)
     if tags["0"]

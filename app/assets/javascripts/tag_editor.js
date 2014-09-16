@@ -90,13 +90,13 @@
     };
     TagEditor.prototype._handleInput = function(v){
         var self = this;
-        if(v.match(/[,|\s]/)){
+        if(v.match(/[,]/)){
             this._handleNewTags();
         }
     };
     TagEditor.prototype._handleNewTags = function(){
         var self = this;
-        var val = this.$fakeTag.val().split(/[,|\s]/);
+        var val = this.$fakeTag.val().split(/[,]/);
         val.forEach(function(i){
             if(i.length > 0){
                 self.addTag(i);

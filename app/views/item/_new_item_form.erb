@@ -13,6 +13,11 @@
           <%= f.collection_select(:item_category_id, CategoryDescription.all.where(:locale => 'en_US').order(:name), :item_category_id, :name, {prompt: t("form_input.item.default_select") },{class: "form-control", required: true})%>
     </div>
 
+      <%= f.fields_for :field_rate  do |builder| %>
+            <%= render "field_rate" , :f => builder%>
+      <% end%>
+
+
     <%= f.fields_for :item_location  do |builder| %>
         <%= render "field_location", :f => builder %>
     <% end%>

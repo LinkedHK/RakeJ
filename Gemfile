@@ -13,22 +13,23 @@ gem 'omniauth'
 #gem 'open_uri_redirections'
 gem 'omniauth-facebook'
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
-#gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git'
+#gem 'simple_capt--cha', :git => 'git://github.com/galetahub/simple-captcha.git'
 
 
 group :test do
-  gem 'rspec-rails', '~> 3.0.0'
-  gem "factory_girl_rails", "~> 4.0"
-  gem 'faker'
-  gem 'codeclimate-test-reporter'
-  gem "capybara-webkit"
-
-
+  gem "factory_girl_rails"
+  gem "faker"
+  gem 'capybara'
+  gem 'poltergeist'
+  gem 'database_cleaner'
+ # gem 'codeclimate-test-reporter'
   #gem 'travis'
 end
 
 group :development, :test do
-  gem  'colorize', :git => "git://github.com/fazibear/colorize.git"
+  gem 'rspec-rails'
+  gem 'colorize', :git => "git://github.com/fazibear/colorize.git"
+
 end
 group :development do
   gem 'guard'
@@ -42,7 +43,6 @@ group :production,:development do
   gem 'jquery-rails'
   #gem 'mobylette'
   #gem 'koala'
-
   # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
   gem 'turbolinks'
   # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -60,8 +60,6 @@ group :production,:development do
   gem 'coffee-rails', '~> 4.0.0'
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer',  platforms: :ruby
-
-
 end
 
 
