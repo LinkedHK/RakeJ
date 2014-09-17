@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140916175903) do
+ActiveRecord::Schema.define(version: 20140917103212) do
 
   create_table "category_description", force: true do |t|
     t.integer "item_category_id"
@@ -35,10 +35,12 @@ ActiveRecord::Schema.define(version: 20140916175903) do
 
   create_table "field_rate", force: true do |t|
     t.integer "item_id"
-    t.integer "rate_number"
     t.string  "currency",          limit: 10
     t.string  "currency_info",     limit: 5
     t.integer "field_currency_id"
+    t.integer "rate_min",                     default: 0
+    t.integer "rate_max",                     default: 0
+    t.integer "negotiable",                   default: 0
   end
 
   add_index "field_rate", ["item_id"], name: "index_field_rate_on_item_id", unique: true, using: :btree

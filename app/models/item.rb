@@ -9,7 +9,7 @@ class Item < ActiveRecord::Base
   accepts_nested_attributes_for :item_tags
   accepts_nested_attributes_for :item_descriptions
   accepts_nested_attributes_for :item_location
-
+  accepts_nested_attributes_for :field_rate
   validate :check_category
 
   def self.build
@@ -30,7 +30,6 @@ class Item < ActiveRecord::Base
   def item_tags_list
     self.item_tags.map(&:tag_text).join(", ")
   end
-
   def item_tags_attributes=(tags)
     if tags["0"]
       tag_set = tags["0"][:tag_text].split(",")

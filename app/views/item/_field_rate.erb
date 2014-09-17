@@ -1,10 +1,17 @@
 <div class="form-group">
   <label>
-    <%= t("form_input.item.item_s") %>
+    <%= t("form_input.item.item_min_rate") %>
   </label>
-  <%= f.text_field(:rate_number,{
+  <%= f.text_field(:rate_min,{
           class: "form-control",
-          id: "salary_number"
+          id: "salary_rate_min"
+  })%>
+  <label>
+    <%= t("form_input.item.item_max_rate") %>
+  </label>
+  <%= f.text_field(:rate_max,{
+          class: "form-control",
+          id: "salary_rate_max"
   })%>
 
   <label>
@@ -14,15 +21,18 @@
   <%= f.collection_select(:field_currency_id, FieldCurrency.all, :id, :currency_title, {prompt: true,:selected =>  FieldCurrency.default_currency},
                           {
                                   class: "form-control",
-                                  id: "currency_field",
-                                  required: true
+                                  id: "currency_field"
 
                           })
-
   %>
 
-
-
-
-
  </div>
+
+<div class="checkbox">
+  <label>
+    <%= f.check_box(:negotiable,{
+            id: "salary_negotiable"
+    })%>
+    <%= t("form_input.item.item_negotiable") %>
+  </label>
+</div>

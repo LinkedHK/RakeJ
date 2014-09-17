@@ -15,6 +15,9 @@ class ItemController < ApplicationController
   end
 
   def create
+
+    puts " Create params #{create_params.inspect}".colorize(:red)
+
     @item = Item.new(create_params)
     @saved = @item.save
     respond_to do |format|
@@ -45,7 +48,7 @@ class ItemController < ApplicationController
   params.require(:item).permit(:item_category_id, item_descriptions_attributes: [ :item_title,:description_text ] ,
                         item_location_attributes: [:location_country_id, :location_city_id, :location_district_id],
                         item_tags_attributes: :tag_text,
-                        field_rate: [:rate_number,:field_currency_id]
+                        field_rate_attributes: [:rate_number,:field_currency_id, :negotiable]
                       )
   end
 

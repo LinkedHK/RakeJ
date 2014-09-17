@@ -3,7 +3,7 @@ FactoryGirl.define do
 
    trait :with_locations do
      after(:build) do |f|
-       found_country = LocationCountry.find_by(name: "Hong Kong")
+       found_country = LocationCountry.first
        if found_country
          country = found_country
        else
