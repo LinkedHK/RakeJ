@@ -9,6 +9,7 @@ describe FieldRate, :class => FieldRate do
     create_rate = FactoryGirl.create(:field_rate,:with_currency)
     saved_rate = FieldRate.first
     expect(saved_rate.negotiable).to eq(0)
+    expect(saved_rate.currency_info).to eq(create_rate.currency_info)
     expect(saved_rate.rate_min).to eq(create_rate.rate_min)
   end
 

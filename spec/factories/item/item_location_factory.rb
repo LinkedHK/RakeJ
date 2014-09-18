@@ -15,6 +15,20 @@ FactoryGirl.define do
        f.location_city = city
        f.location_district = district
      end
+
+     after(:create) do |f|
+       found_country = LocationCountry.first
+       if found_country
+         country = found_country
+       else
+         country  = FactoryGirl.create(:location_country)
+       end
+       city = country.location_cities.first
+       district = city.location_districts.first
+       f.location_country = country
+       f.location_city = city
+       f.location_district = district
+     end
    end
 
   trait :fake_city do

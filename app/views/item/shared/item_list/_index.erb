@@ -1,0 +1,32 @@
+<%= render 'item/shared/item_list/title', { :title => item.item_descriptions[0].item_title}%>
+
+<%= render 'item/shared/item_list/share' %>
+  <!--DESCRIPTION STARTS -->
+  <div class="" id="panel">
+
+    <ul class="list-group property-meta-list">
+
+      <li class="list-group-item">
+        <%= render 'item/shared/item_list/location', { :location => item.item_location}%>
+
+      </li>	<!-- list-group-item -->
+      <li class="list-group-item">
+        <%= render 'item/shared/item_list/salary', { :rate => item.field_rate}%>
+      </li>
+    </ul>
+
+    <%= render 'item/shared/item_list/tags', { :tags => item.item_tags_list}%>
+
+
+    <%= render 'item/shared/item_list/description', { :description => item.item_descriptions[0].description_text}%>
+
+  </div>
+  <!--DESCRIPTION ENDS -->
+
+
+  <%= render 'item/shared/item_list/map'%>
+
+
+
+
+

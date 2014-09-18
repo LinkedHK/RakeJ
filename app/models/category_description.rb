@@ -1,6 +1,11 @@
 class CategoryDescription < ActiveRecord::Base
   self.table_name = 'category_description'
-  belongs_to :item_category
+  belongs_to :item_category,touch: true
+
+  def self.get_all
+    self.all.where(:locale => 'en_US').order(:name)
+
+  end
 
 =begin
 

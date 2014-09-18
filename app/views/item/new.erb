@@ -1,1 +1,5 @@
-<%= render 'new_item_form' %>
+<% cache 'new_item_form' do%>
+<%= render 'item/shared/new_item/index' %>
+<% end %>
+
+

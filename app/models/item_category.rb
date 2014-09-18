@@ -10,8 +10,10 @@ class ItemCategory < ActiveRecord::Base
 
 
 
+# == Schema Information
 
 =begin
+
 Table: item_categories
   Columns:
   id	int(11) AI PK

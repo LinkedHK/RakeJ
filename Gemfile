@@ -14,7 +14,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 #gem 'simple_capt--cha', :git => 'git://github.com/galetahub/simple-captcha.git'
-
+gem 'cache_digests'
 
 group :test do
   gem "factory_girl_rails"
@@ -28,6 +28,7 @@ end
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'rspec-collection_matchers'
   gem 'colorize', :git => "git://github.com/fazibear/colorize.git"
 
 end

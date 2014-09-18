@@ -1,8 +1,10 @@
 class ItemTag < ActiveRecord::Base
-  belongs_to :item
+  belongs_to :item,touch: true
   before_create do
     self.tag_added = DateTime.now
   end
+
+  # == Schema Information
 
 =begin
 Table: item_tags

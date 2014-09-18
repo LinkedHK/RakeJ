@@ -36,6 +36,7 @@ en:
       item_currency: "Currency"
       item_negotiable: "Negotiable"
       item_tags_separate: "Use commas, spaces to separate tags."
+      item_location_default: "Not specified"
     validation:
       successful: "Successful"
       unknown_error: "Unknown error occurred. Please reload page and try again."

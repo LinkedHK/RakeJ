@@ -1,0 +1,22 @@
+
+<div class="row">
+
+  <div class="col-md-3 col-sm-3 col-xs-5 titles first"><span><i class="fa fa-briefcase"></i>
+    <%= t("form_input.item.item_s") %>
+        </span>
+  </div>
+  <% if rate.negotiable == 1 %>
+      <%= t("form_input.item.item_negotiable")%>
+  <% else %>
+
+      <i class="fa fa-money"></i>
+      <%=  rate.currency_info%>
+      <%=  rate.rate_min%>
+      <% if rate.rate_max%>
+          - <%= rate.rate_max %>
+      <% end %>
+  <% end %>
+
+
+
+</div>

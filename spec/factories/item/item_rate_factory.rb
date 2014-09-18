@@ -5,7 +5,10 @@ FactoryGirl.define do
   end
   trait :with_currency do
     after(:build) do |f|
-      f.field_currency_id = FactoryGirl.create(:field_currency).id
+      FactoryGirl.create(:field_currency)
+      currency =  FieldCurrency.first
+      f.field_currency_id = currency.id
+      f.currency_info = currency.currency_title
     end
   end
   trait :with_invalid_rate do

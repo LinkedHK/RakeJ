@@ -23,6 +23,7 @@ RSpec.describe ItemController, :type => :controller do
       @description_nest = FactoryGirl.build(:item_description).attributes
       @tags_nest = FactoryGirl.build(:item_tag).attributes
       @rate_nest = FactoryGirl.build(:field_rate,:with_currency,:with_negotiation).attributes
+
       request.env["HTTP_ACCEPT"] = 'application/json'
     end
     it "Create a new item" do
@@ -38,6 +39,14 @@ RSpec.describe ItemController, :type => :controller do
       expect(ItemTag.all.count).to eq(3)
       expect(ItemDescription.all.count).to eq(1)
       expect(FieldRate.all.count).to eq(1)
+
+      saved_rate = FieldRate.first
+      expect(saved_rate.negotiable).to eq(1)
+      expect(saved_rate.currency_info).to eq(@rate_nest["currency_info"])
+      expect(saved_rate.rate_min).to eq(@rate_nest["rate_min"])
+      expect(saved_rate.rate_max).to eq(@rate_nest["rate_max"])
+
+
     end
     it "Fail to create item because title is blank" do
       @description_nest = FactoryGirl.build(:item_description,:empty_title).attributes
