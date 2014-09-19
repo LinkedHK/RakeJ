@@ -1,7 +1,7 @@
 <div class="container">
 
   <div class="col-md-9">
-<% cache :item_list do%>
+<% cache @items do%>
   <% @items.each do |item|%>
 
     <%= render 'item/shared/item_list/index',{ :item => item} %>

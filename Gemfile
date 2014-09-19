@@ -14,7 +14,6 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 #gem 'simple_capt--cha', :git => 'git://github.com/galetahub/simple-captcha.git'
-gem 'cache_digests'
 
 group :test do
   gem "factory_girl_rails"
@@ -41,6 +40,8 @@ end
 group :production,:development do
   #gem 'koala'
   # Use jquery as the JavaScript library
+  gem 'ckeditor'
+  gem "sanitize"
   gem 'jquery-rails'
   #gem 'mobylette'
   #gem 'koala'

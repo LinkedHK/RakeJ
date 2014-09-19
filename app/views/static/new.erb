@@ -1,0 +1,58 @@
+<div style="margin-top: 50px ; clear: both"></div>
+
+<script>
+
+    // This code is generally not necessary, but it is here to demonstrate
+    // how to customize specific editor instances on the fly. This fits well
+    // this demo because we have editable elements (like headers) that
+    // require less features.
+
+    // The "instanceCreated" event is fired for every editor instance created.
+
+    CKEDITOR.on( 'dialogDefinition',function(dialog){
+
+        var dialogName = dialog.data.name;
+        var dialogDefinition = dialog.data.definition;
+
+        console.log(dialog);
+
+        if ( dialogName == 'link' )
+        {
+            // Get a reference to the "Link Info" tab.
+            var infoTab = dialogDefinition.getContents( 'info' );
+
+            var linktypeField = infoTab.get( 'linkType' );
+            var email = infoTab.get('emailOptions');
+            var protocol = infoTab.get('protocol');
+            /* Remove it from the array of items */
+            linktypeField['items'].splice(1, 1);
+            email['children'].splice(1,2);
+            protocol['items'].splice(3,4);
+
+            console.log( protocol);
+
+        }
+    });
+    CKEDITOR.on( 'instanceCreated', function( event ) {
+
+
+    });
+
+</script>
+
+<%= form_for(@editor, {:url => :editor_create}) do |f| %>
+    <div class="form-group">
+    <%= f.label"Title" %>
+    <%= f.text_field(:title, {:id => "creator_title", :class => "form-control" }) %>
+   </div>
+
+    <div class="form-group">
+        <%= f.label"Description" %>
+        <%= f.cktext_area :descr, :value => 'Default value', :id => 'demo_descr' %>
+   </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-group-lg btn-lg" >Submit</button>
+    </div>
+
+
+<% end %>
