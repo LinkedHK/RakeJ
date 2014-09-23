@@ -3,7 +3,7 @@ class CategoryDescription < ActiveRecord::Base
   belongs_to :item_category,touch: true
 
   def self.get_all
-    self.all.where(:locale => 'en_US').order(:name)
+    self.all.order(:name)
 
   end
 

@@ -12,9 +12,7 @@ FactoryGirl.define do
     after(:create) do |item_category|
       FactoryGirl.create(:category_description,item_category: item_category)
     end
-
   end
-
   factory :item_description  do |f|
     item_title "Item Title"
     description_text "Item Description"
@@ -30,9 +28,8 @@ FactoryGirl.define do
   end
 
   factory :category_description do |f|
-    association :item_category
-    name "Tech"
-    locale "en_US"
+    f.name "Tech"
+    f.locale "en_US"
   end
   factory :item_tag do |t|
     tag_text "tech,sales,marketing"
