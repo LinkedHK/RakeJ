@@ -14,10 +14,12 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 #gem 'simple_capt--cha', :git => 'git://github.com/galetahub/simple-captcha.git'
-gem 'cache_digests'
 
 gem 'jquery-rails'
 gem 'turbolinks'
+
+gem 'ckeditor'
+gem "sanitize"
 
 group :test do
   gem "factory_girl_rails"
@@ -44,7 +46,6 @@ end
 group :production,:development do
   #gem 'koala'
   # Use jquery as the JavaScript library
-
   #gem 'mobylette'
   #gem 'koala'
   # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks

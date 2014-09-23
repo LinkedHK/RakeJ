@@ -12,9 +12,7 @@ class ItemController < ApplicationController
     @item = Item.build
     # http://stackoverflow.com/questions/9498671/one-to-one-undefined-method-build
   end
-
   def create
-
     puts " Create params #{create_params.inspect}".colorize(:red)
 
     @item = Item.new(create_params)

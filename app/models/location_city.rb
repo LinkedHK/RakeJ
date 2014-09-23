@@ -3,8 +3,6 @@ class LocationCity < ActiveRecord::Base
   belongs_to :location_country,touch: true
   has_many :location_districts
 
-
-
 end
 
 # == Schema Information

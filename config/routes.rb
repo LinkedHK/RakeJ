@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  mount Ckeditor::Engine => '/ckeditor'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -31,6 +32,9 @@ Rails.application.routes.draw do
 
   root to: 'static#index'
 
+  get "/new", to: 'static#new'
+  post "/create", to: 'static#create', as: 'editor_create'
+  get "/destroy/:id", to: 'static#destroy', as: 'editor_destroy'
 
   scope "/item" do
     get "/", to: "item#index", as: 'item_index'
