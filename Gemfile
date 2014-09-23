@@ -16,6 +16,9 @@ gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 #gem 'simple_capt--cha', :git => 'git://github.com/galetahub/simple-captcha.git'
 gem 'cache_digests'
 
+gem 'jquery-rails'
+gem 'turbolinks'
+
 group :test do
   gem "factory_girl_rails"
   gem "faker"
@@ -41,11 +44,11 @@ end
 group :production,:development do
   #gem 'koala'
   # Use jquery as the JavaScript library
-  gem 'jquery-rails'
+
   #gem 'mobylette'
   #gem 'koala'
   # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-  gem 'turbolinks'
+
   # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
   gem 'jbuilder', '~> 2.0'
   # bundle exec rake doc:rails generates the API under doc/api.

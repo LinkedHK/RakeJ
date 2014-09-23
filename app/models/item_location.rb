@@ -29,7 +29,6 @@ class ItemLocation < ActiveRecord::Base
 
   def normalize_district
     self.location_district = LocationDistrict.find_by(id: self.location_district_id) if self.location_district_id
-
     if self.location_district
 
       self.s_district = self.location_district.name

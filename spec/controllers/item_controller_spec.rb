@@ -93,12 +93,12 @@ RSpec.describe ItemController, :type => :controller do
     end
 
     it "Fail to add item because of fake city" do
-      @location_nest["location_city_id"] = -2
+      location_nest = FactoryGirl.build(:item_location,:fake_city).attributes
       expect{
         post :create,item:   {item_descriptions_attributes: [@description_nest],
                               item_category_id: @category_nest["id"],
                               item_tags_attributes: {"0" => @tags_nest},
-                              item_location_attributes: @location_nest}
+                              item_location_attributes: location_nest}
       }
       .to change(ItemLocation,:count).by(0)
 
@@ -112,12 +112,12 @@ RSpec.describe ItemController, :type => :controller do
 
 
     it "Fail to add item because of fake district" do
-      @location_nest["location_district_id"] = -2
+      location_nest = FactoryGirl.build(:item_location,:fake_district).attributes
       expect{
         post :create,item:   {item_descriptions_attributes: [@description_nest],
                               item_category_id: @category_nest["id"],
                               item_tags_attributes: {"0" => @tags_nest},
-                              item_location_attributes: @location_nest}
+                              item_location_attributes: location_nest}
       }
       .to change(ItemLocation,:count).by(0)
 

@@ -20,7 +20,7 @@ describe ItemLocation, :class => ItemLocation do
 
   it "Fail to save because of missing city" do
     location = FactoryGirl.build(:item_location,:fake_city)
-    expect(location.errors).not_to be_valid
+    expect(location).not_to be_valid
   end
 
 

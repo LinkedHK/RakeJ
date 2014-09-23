@@ -24,7 +24,6 @@ require 'capybara/poltergeist'
 Capybara.configure do |c|
   c.javascript_driver = :poltergeist
   c.default_driver = :poltergeist
-  c.app_host = "http://localhost:3000"
 end
 
 
@@ -34,6 +33,7 @@ RSpec.configure do |config|
   #config.include(Capybara::Webkit::RspecMatchers, :type => :feature)
 
   config.include Capybara::DSL
+
 
 
 # Given that it is always loaded, you are encouraged to keep this file as
