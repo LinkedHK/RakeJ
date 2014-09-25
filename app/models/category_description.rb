@@ -3,6 +3,7 @@ class CategoryDescription < ActiveRecord::Base
   belongs_to :item_category,touch: true
 
   def self.get_all
+    puts "Get All #{ self.first.inspect }" .colorize(:red)
     self.all.order(:name)
 
   end

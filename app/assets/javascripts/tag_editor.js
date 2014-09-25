@@ -17,7 +17,7 @@
         this.$inputTag.hide();
         this.$inputTag.parent().append("<ul class='tagsSet_wrapper form-control' id='tagsSet'>" +
             "" +"<li class='tagsSet_input'>" +
-            "<input type='text' maxlength='29' autocomplete='off' class='tagBox_hiddeninput' id='fakeTag'/>" +
+            "<input type='text' maxlength='29' autocomplete='off' class='tagBox_hiddeninput' name='fake_tag' id='fakeTag'/>" +
             "</li>"
             +
             "<ul>");

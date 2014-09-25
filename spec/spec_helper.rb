@@ -15,25 +15,13 @@
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
-require 'capybara'
-require 'database_cleaner'
-require 'capybara/dsl'
-require 'capybara/poltergeist'
 
 
-Capybara.configure do |c|
-  c.javascript_driver = :poltergeist
-  c.default_driver = :poltergeist
-end
+
+
 
 
 RSpec.configure do |config|
-
-
-  #config.include(Capybara::Webkit::RspecMatchers, :type => :feature)
-
-  config.include Capybara::DSL
-
 
 
 # Given that it is always loaded, you are encouraged to keep this file as

@@ -1,7 +1,7 @@
 class LocationController < ApplicationController
 
 
-  protect_from_forgery except: :district
+ # protect_from_forgery except: :district
 
   def district
     params.permit(:city_id)

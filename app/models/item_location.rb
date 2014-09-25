@@ -4,7 +4,6 @@ class ItemLocation < ActiveRecord::Base
   belongs_to :location_country
   belongs_to :location_city
   belongs_to :location_district
-
   validate :check_location
   before_save :normalize_country, :normalize_city,:normalize_district
 
@@ -30,12 +29,9 @@ class ItemLocation < ActiveRecord::Base
   def normalize_district
     self.location_district = LocationDistrict.find_by(id: self.location_district_id) if self.location_district_id
     if self.location_district
-
       self.s_district = self.location_district.name
 
     end
-
-
 
   end
 

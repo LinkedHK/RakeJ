@@ -1,3 +1,4 @@
+
 $(function(window){
     function ItemCreation(option){
         this.$itemForm = option.itemForm || $("#new_item_form");
@@ -8,8 +9,10 @@ $(function(window){
         this.$tagIndicator = option.tagIndicator  || $("#tag_number");
         this.$buttonSubmit = $("#button_submit");
         /*@Todo Dump Solution!*/
-        this.default_text = "Please select";
+
         this.$formError = option.errorsList || $("#errors_list");
+
+
         this.initListeners();
     }
 
@@ -18,11 +21,13 @@ $(function(window){
         this.onDescChange();
         this.OnItemSubmit();
         this.OnTagEdit();
+
+
     };
 
     ItemCreation.prototype.sTemplate = function(data){
         var html = "";
-        html +=  "<option value=''>" + "<%= I18n.t("form_input.item.default_select")  %>" + "</option>";
+        html +=  "<option value=''><%= I18n.t("form_input.item.default_select")  %></option>";
         if(data.districts.length > 0){
             $.each(data.districts,function(i,item){
                 html += "<option value='" + item.id +"'>"+ item.name +"</option>"
@@ -86,5 +91,13 @@ $(function(window){
         formUrl: "/item/create",
         errorsList: $("#errors_list")
     });
+
+    $("#demo_submit").on("click",function(){
+        $.ajax({
+            url: '/item/demo',
+            dataType: "script",
+            method: "POST"
+        });
+    })
 
 });

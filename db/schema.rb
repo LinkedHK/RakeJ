@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140920011848) do
+ActiveRecord::Schema.define(version: 20140920053013) do
 
   create_table "category_description", force: true do |t|
     t.integer "item_category_id"
@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 20140920011848) do
     t.string  "currency_symbol",      limit: 5
     t.string  "currency_description", limit: 50
     t.string  "currency_code",        limit: 5
-    t.integer "default_currency",                default: 0
+    t.integer "default_currency",     limit: 1,  default: 0
   end
 
   add_index "field_currency", ["currency_title"], name: "index_field_currency_on_currency_title", unique: true, using: :btree
@@ -63,14 +63,14 @@ ActiveRecord::Schema.define(version: 20140920011848) do
     t.integer "field_currency_id"
     t.integer "rate_min",                     default: 0
     t.integer "rate_max",                     default: 0
-    t.integer "negotiable",                   default: 0
+    t.integer "negotiable",        limit: 1,  default: 0
   end
 
   add_index "field_rate", ["item_id"], name: "index_field_rate_on_item_id", unique: true, using: :btree
 
   create_table "item_categories", force: true do |t|
-    t.integer "parent_id", default: -1
-    t.boolean "enabled"
+    t.integer "parent_id",           default: -1
+    t.integer "enabled",   limit: 1, default: 0
   end
 
   add_index "item_categories", ["enabled"], name: "index_item_categories_on_enabled", using: :btree

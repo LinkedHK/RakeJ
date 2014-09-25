@@ -5,6 +5,7 @@ class LocationDistrict < ActiveRecord::Base
 
 
 
+
 end
 
 # == Schema Information
