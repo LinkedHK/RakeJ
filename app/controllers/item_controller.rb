@@ -2,8 +2,9 @@ class ItemController < ApplicationController
 
   def index
     @items = Item.all.limit(10)
+
     respond_to do |format|
-      format.json{ render json: @items.as_json(:include =>  [:item_tags,{ item_descriptions: { only: [:item_title, :description_text] } } ] ) }
+      format.json{ render json: @items.as_json(Item.show_as_json) }
       format.html
     end
   end
@@ -17,22 +18,20 @@ class ItemController < ApplicationController
 
     @item = Item.new(create_params)
     @saved = @item.save
+
     respond_to do |format|
       if @saved
-        format.json {render json:  { :result  => 1, :info => "Successfully created!"}}
+        format.json {render json:  { :result  => 1, :info => t("form_input.item.item_creation_successfull") }}
       else
         format.json { render json: { :result => 0, :info => t("form_input.validation.unknown_error"), validation_error: @item.errors}, status: 422 }
       end
-      format.js { render 'item/shared/item_creation_result' }
+      format.js { render 'item/shared/new_item/item_creation_result' }
     end
   end
 
   def show
-
-    @item = Item.find_by(id: params[show_params])
-
-    render :json => @item
-
+    @item = Item.find_by(id: params[:item_id])
+    render :json => @item.as_json(Item.show_as_json)
   end
 
   def edit
@@ -49,10 +48,6 @@ class ItemController < ApplicationController
                       )
   end
 
-  def show_params
-    params.permit(:item_id)
-
-  end
 
 
   def item_categories

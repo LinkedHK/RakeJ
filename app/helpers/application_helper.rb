@@ -1,7 +1,5 @@
 require 'sanitize'
 module ApplicationHelper
-
-
   def sanitize_descr(desc)
    data = Sanitize.fragment( desc,
         :elements => ['li','ul','ol','br','h1','strong','b', 'a','span','p'],

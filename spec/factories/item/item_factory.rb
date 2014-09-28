@@ -1,8 +1,8 @@
 FactoryGirl.define do
-
   factory :item do |f|
     association :item_category
   end
+
   trait :invalid_category do
     item_category_id -2
   end

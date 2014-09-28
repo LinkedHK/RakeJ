@@ -37,8 +37,8 @@ en:
       item_negotiable: "Negotiable"
       item_tags_separate: "Use commas, spaces to separate tags."
       item_location_default: "Not specified"
+      item_creation_successfull: "Item has been successfully created!"
     validation:
-      successful: "Successful"
       unknown_error: "Unknown error occurred. Please reload page and try again."
       empty_title: "Please enter title."
       empty_description: "Description can't be blank."

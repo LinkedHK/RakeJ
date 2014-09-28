@@ -21,11 +21,13 @@ gem 'turbolinks'
 gem 'ckeditor'
 gem "sanitize"
 
+
 group :test do
   gem "factory_girl_rails"
   gem "faker"
   gem 'capybara'
   gem 'poltergeist'
+  gem 'selenium-webdriver'
   gem 'database_cleaner'
  # gem 'codeclimate-test-reporter'
   #gem 'travis'
