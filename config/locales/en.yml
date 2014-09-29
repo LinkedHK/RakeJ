@@ -31,6 +31,7 @@ en:
       item_location_district: "District/City area"
       item_tags: "Tags"
       item_s: "Salary rate"
+      item_salary_rate: "Salary rate"
       item_min_rate: "Min Salary rate"
       item_max_rate: "Max Salary rate"
       item_currency: "Currency"

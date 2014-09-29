@@ -1,8 +1,7 @@
 class ItemController < ApplicationController
 
   def index
-    @items = Item.all.limit(10)
-
+    @items = ItemPresenter.new(Item.all.limit(10))
     respond_to do |format|
       format.json{ render json: @items.as_json(Item.show_as_json) }
       format.html

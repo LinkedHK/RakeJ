@@ -1,4 +1,4 @@
-<%= render 'item/shared/item_list/title', { :title => item.item_descriptions[0].item_title}%>
+<%= render 'item/shared/item_list/title', { :title => item.title}%>
 
 <%= render 'item/shared/item_list/share' %>
   <!--DESCRIPTION STARTS -->
@@ -7,18 +7,18 @@
     <ul class="list-group property-meta-list">
 
       <li class="list-group-item">
-        <%= render 'item/shared/item_list/location', { :location => item.item_location}%>
-z
+        <%= render 'item/shared/item_list/location', { :location => item.location}%>
+
       </li>	<!-- list-group-item -->
       <li class="list-group-item">
-        <%= render 'item/shared/item_list/salary', { :rate => item.field_rate}%>
+        <%= render 'item/shared/item_list/salary', { :rate => item.rate }%>
       </li>
     </ul>
 
-    <%= render 'item/shared/item_list/tags', { :tags => item.item_tags_list}%>
+    <%= render 'item/shared/item_list/tags', { :tags => item.tags}%>
 
 
-    <%= render 'item/shared/item_list/description', { :description => item.item_descriptions[0].description_text}%>
+    <%= render 'item/shared/item_list/description', { :description => item.description}%>
 
   </div>
   <!--DESCRIPTION ENDS -->
