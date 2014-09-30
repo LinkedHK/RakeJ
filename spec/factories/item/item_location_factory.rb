@@ -1,6 +1,5 @@
 FactoryGirl.define do
   factory :item_location do
-
    trait :with_locations do
      after(:build) do |f|
        found_country = LocationCountry.first

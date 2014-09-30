@@ -1,7 +1,5 @@
 class ItemPresenter < PresenterBase
   include  ActionView::Helpers
-  include  ActionView::Helpers::Tags
-  include  ActionView::Helpers::TagHelper
 
   def list_items(&block)
     wrapped_enum(self,model,&block)
@@ -46,8 +44,6 @@ class ItemPresenter < PresenterBase
   def tags
     model.item_tags_list
   end
-
-
   def location
     data =[]
     if city

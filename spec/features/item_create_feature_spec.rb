@@ -3,11 +3,10 @@
 require 'rails_helper'
 require 'spec_helper'
 
-describe 'accessibility of webpage',:js => true do
+describe 'accessibility of webpage' do
 
   before(:all) do
     query_log
-
   end
   before(:each) do
 
@@ -41,6 +40,12 @@ describe 'accessibility of webpage',:js => true do
    # expect(page).to have_content(I18n.t("form_input.item.item_creation_successfull"))
   expect(Item.all.count).to eq(1)
   expect(current_path).to eq(item_show_path(Item.first.id))
+  end
+
+  it 'should create item', :js => true  do
+   item = FactoryGirl.create(:item_with_description)
+    visit item_show_path(item.id)
+    sleep(10)
 
   end
 end
