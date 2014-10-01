@@ -1,5 +1,4 @@
 class ItemPresenter < PresenterBase
-  include  ActionView::Helpers
 
   def list_items(&block)
     wrapped_enum(self,model,&block)
@@ -40,7 +39,6 @@ class ItemPresenter < PresenterBase
     model.item_location.s_district
   end
 
-
   def tags
     model.item_tags_list
   end
@@ -55,6 +53,17 @@ class ItemPresenter < PresenterBase
     data.join(", ")
   end
 
+  def created
+    model.created_at.strftime("%B %d, %Y")
+  end
+
+  def modified
+    model.created_at.strftime("%B %d, %Y")
+  end
+
+  def category
+    model.item_category.category_descriptions.first.name
+  end
 
 
 end

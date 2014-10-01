@@ -26,8 +26,8 @@ FactoryGirl.define do
     end
   end
   factory :item_description  do |f|
-    item_title "Item Title"
-    description_text "Item Description"
+    item_title Faker::Lorem.sentence
+    description_text Faker::Lorem.paragraph(20,true)
     locale "en_US"
 
     trait :empty_title do

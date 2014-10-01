@@ -42,10 +42,13 @@ describe 'accessibility of webpage' do
   expect(current_path).to eq(item_show_path(Item.first.id))
   end
 
-  it 'should create item', :js => true  do
-   item = FactoryGirl.create(:item_with_description)
+  it 'should show item', :js => true  do
+   item = ItemPresenter.new(FactoryGirl.create(:item_with_description))
     visit item_show_path(item.id)
-    sleep(10)
+   expect(page).to have_content(item.title)
+   expect(page).to have_content(item.description)
+   expect(page).to have_content(item.salary_range)
+  sleep(10)
 
   end
 end

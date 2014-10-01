@@ -29,8 +29,12 @@ class ItemController < ApplicationController
   end
 
   def show
-    @item = Item.find_by(id: params[:item_id])
-    render :json => @item.as_json(Item.show_as_json)
+    @item = ItemPresenter.new(Item.find_by(id: params[:item_id]))
+
+    respond_to do |format|
+        format.html
+        format.json { render json: @item.as_json(Item.show_as_json) }
+    end
   end
 
   def edit

@@ -21,6 +21,12 @@ gem 'turbolinks'
 gem 'ckeditor'
 gem "sanitize"
 
+# Gemfile
+gem 'rabl'
+# Also add either `oj` or `yajl-ruby` as the JSON parser
+gem 'oj'
+
+gem 'cells',:git => "git://github.com/apotonick/cells.git"
 
 group :test do
   gem "factory_girl_rails"

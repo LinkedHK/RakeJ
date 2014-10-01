@@ -1,31 +1,25 @@
-<div class="content item">
-  <div id="item_head">
-    <div class="inner">
-      <h1> <strong>Waiter in Chinese Speciality Restaurant Terriente</strong></h1>
-    </div>
+<div class="container">
+  <div class="page-header">
+    <h1><%= @item.title %></h1>
   </div>
-  <div id="main">
-    <div id="type_dates">
-      <strong>Restaurant - Food Service</strong>
-      <em class="publish">Published date: March 13, 2012</em>
-      <em class="update">Modified date: March 19, 2012</em>
-    </div>
-    <ul id="item_location">
-      <li>Country: <strong>Spain</strong></li>                    <li>Region: <strong>Teruel</strong></li>                    <li>City: <strong>Terriente</strong></li> </ul>
-      <p class="contact_button">
-        <strong><a href="#contact">Contact seller</a></strong>
-        <strong class="share"><a href="http://demo.osclass.org/jobboard/index.php?page=item&amp;action=send_friend&amp;id=23" rel="nofollow">Share</a></strong>
-      </p>
+  <div class="item_meta page-header">
+        <div class="row category_info">
+          <div class="col-md-4"> Category:  <%= @item.category %></div>
+          <div class="col-md-4"> Published date:  <%= @item.created %></div>
+          <div class="col-md-4"> Modified date:  <%= @item.modified %></div>
+        </div>
+      <div class="row">
+        <div class="col-md-4"> Location:  <%= @item.location %></div>
       </div>
-    <!-- plugins -->
-    <div id="useful_info">
-      <h2>Useful information</h2>
-      <ul>
-        <li>Avoid scams by acting locally or paying with PayPal</li>
-        <li>Never pay with Western Union, Moneygram or other anonymous payment services</li>
-        <li>Don't buy or sell outside of your country. Don't accept cashier cheques from outside your country</li>
-        <li>This site is never involved in any transaction, and does not handle payments, shipping, guarantee transactions, provide escrow services, or offer "buyer protection" or "seller certification"</li>
-      </ul>
-    </div>
-
   </div>
+  <div class="content-main">
+    <%= @item.description %>
+  </div>
+  <div class="page-header item_bottom">
+    <div class="row">
+      <div class="col-md-4">
+           Salary Range: <%= @item.rate%>
+      </div>
+    </div>
+  </div>
+</div>
