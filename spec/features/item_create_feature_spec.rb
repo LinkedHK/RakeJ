@@ -44,11 +44,10 @@ describe 'accessibility of webpage' do
 
   it 'should show item', :js => true  do
    item = ItemPresenter.new(FactoryGirl.create(:item_with_description))
-    visit item_show_path(item.id)
+  visit item_show_path(item.id)
    expect(page).to have_content(item.title)
    expect(page).to have_content(item.description)
    expect(page).to have_content(item.salary_range)
-  sleep(10)
 
   end
 end

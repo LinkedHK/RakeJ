@@ -1,15 +1,9 @@
 <div class="container">
 
-<div class="col-md-9">
-<% cache @items do%>
-  <% @items.list_items do |item|%>
+    <div class="col-md-9">
 
-    <%= render 'item/shared/item_list/index',{ :item => item} %>
-
-  <% end %>
-
-  </div>
-<% end %>
+     <%= render_cell :item, :list %>
 
 
+    </div>
 </div>
