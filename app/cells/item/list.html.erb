@@ -1,0 +1,20 @@
+<script>
+  $(document).ready(function(){
+        var item_list = new WIDGET_item_list({});
+  });
+</script>
+
+<div style="height: 50px"></div>
+<section id="item_list_section"  class="primary_preview_item preview_list">
+  <div class="item_container" id="item_scroll_area">
+    <% @items.list_items do |item| %>
+        <%= item_li( item )   %>
+    <% end %>
+  </div>
+</section>
+<section id="secondary_result_wrapper" class="secondary_preview_result">
+  <div id="secondary_result">
+
+  </div>
+
+</section>

@@ -14,8 +14,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap.min
-//= require main
-//= require item_creator.js.erb
 //= require_tree .
 
 

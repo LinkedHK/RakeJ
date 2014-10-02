@@ -30,8 +30,10 @@ class ItemController < ApplicationController
 
   def show
     @item = ItemPresenter.new(Item.find_by(id: params[:item_id]))
-
     respond_to do |format|
+      if request.xhr?
+        format.html{ render :partial => 'item/shared/ajax/show'}
+      end
         format.html
         format.json { render json: @item.as_json(Item.show_as_json) }
     end

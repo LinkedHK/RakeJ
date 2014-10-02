@@ -27,6 +27,7 @@ gem 'rabl'
 gem 'oj'
 
 gem 'cells'
+gem "js-routes"
 
 group :test do
   gem "factory_girl_rails"

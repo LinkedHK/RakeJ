@@ -1,4 +1,17 @@
+<script>
+  $(document).ready(function(){
+      var item = new ItemCreation({
+          itemForm: $("#new_item_form"),
+          selectCity: $("#location_city"),
+          selectDistrict: $("#location_district"),
+          tagsEditor: $("#tags_editor"),
+          tagIndicator: $("#tag_number"),
+          formUrl: "/item/create",
+          errorsList: $("#errors_list")
+      });
 
+  });
+</script>
 <% cache @item do%>
 <%= render 'item/shared/new_item/index' %>
 <% end %>

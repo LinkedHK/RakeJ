@@ -1,5 +1,4 @@
 
-$(function(window){
     function ItemCreation(option){
         this.$itemForm = option.itemForm || $("#new_item_form");
         this.$selectCity =  option.selectCity ||  $("#location_city");
@@ -82,22 +81,3 @@ $(function(window){
             });
         }
     };
-    var item = new ItemCreation({
-        itemForm: $("#new_item_form"),
-        selectCity: $("#location_city"),
-        selectDistrict: $("#location_district"),
-        tagsEditor: $("#tags_editor"),
-        tagIndicator: $("#tag_number"),
-        formUrl: "/item/create",
-        errorsList: $("#errors_list")
-    });
-
-    $("#demo_submit").on("click",function(){
-        $.ajax({
-            url: '/item/demo',
-            dataType: "script",
-            method: "POST"
-        });
-    })
-
-});
