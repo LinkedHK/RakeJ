@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140920053013) do
+ActiveRecord::Schema.define(version: 20141003113529) do
 
   create_table "category_description", force: true do |t|
     t.integer "item_category_id"
@@ -146,28 +146,57 @@ ActiveRecord::Schema.define(version: 20140920053013) do
   add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true, using: :btree
   add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
 
-  create_table "users", force: true do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "email",                                           null: false
-    t.string   "password",            limit: 100,                 null: false
-    t.string   "password_salt"
-    t.integer  "user_type",                       default: 0
-    t.integer  "admin",                           default: 0
-    t.integer  "account_status",                  default: 1
-    t.boolean  "verified",                        default: false
-    t.datetime "registration_date"
-    t.datetime "login_date"
-    t.string   "company_name",        limit: 30
+  create_table "user_companies", force: true do |t|
+    t.integer  "user_id"
+    t.string   "company_name",        limit: 50
     t.string   "company_address"
     t.text     "company_description"
-    t.string   "locale",              limit: 10
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "users", ["company_name"], name: "index_users_on_company_name", using: :btree
+  create_table "user_profiles", force: true do |t|
+    t.integer  "user_id"
+    t.string   "first_name", limit: 30
+    t.string   "last_name",  limit: 30
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_types", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "email",                                             null: false
+    t.integer  "user_type",                         default: 0
+    t.integer  "admin",                             default: 0
+    t.integer  "account_status",                    default: 1
+    t.boolean  "verified",                          default: false
+    t.datetime "registration_date"
+    t.datetime "login_date"
+    t.string   "locale",                 limit: 10
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "encrypted_password",                default: "",    null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",                     default: 0,     null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+  end
+
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["created_at", "updated_at"], name: "index_users_on_created_at_and_updated_at", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

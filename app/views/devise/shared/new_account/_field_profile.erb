@@ -1,0 +1,15 @@
+<div class="form-group">
+<label>
+  <%= t("form_input.account.registration.first_name")  %>
+</label>
+  <%=  f.text_field :first_name, { :class =>  ["changeable","form-control","input-lg"],   :maxlength => "30", } %>
+</div>
+
+<div class="form-group">
+  <label>
+    <%= t("form_input.account.registration.last_name")  %>
+  </label>
+  <%=  f.text_field :last_name, { :class =>  ["changeable","form-control","input-lg"],   :maxlength => "30", } %>
+</div>
+
+

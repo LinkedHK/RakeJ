@@ -28,6 +28,7 @@ gem 'oj'
 
 gem 'cells'
 gem "js-routes"
+gem 'devise'
 
 group :test do
   gem "factory_girl_rails"

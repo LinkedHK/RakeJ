@@ -2,7 +2,7 @@
 # spec/support/factory_girl.rb
 
 # rspec
-require 'faker'
+#require 'faker'
 
 RSpec.configure do |config|
 

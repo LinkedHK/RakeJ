@@ -1,3 +1,4 @@
+require 'faker'
 FactoryGirl.define do
   factory :item do |f|
     association :item_category
@@ -29,7 +30,6 @@ FactoryGirl.define do
     item_title Faker::Lorem.sentence
     description_text Faker::Lorem.paragraph(20,true)
     locale "en_US"
-
     trait :empty_title do
       item_title ""
     end

@@ -1,0 +1,56 @@
+<div class="page-header">
+  <div class="clearfix">
+    <div class="text-center">
+        <h1>Sign Up</h1>
+    </div>
+  </div>
+</div>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => { :id => "signup_form", :class => "col-md-12"}) do |f| %>
+    <%= devise_error_messages! %>
+    <div class="row text-center">
+      <div class="col-md-4 col-sm-12">
+        <button type="button" class="btn btn-primary btn-block">Facebook</button>
+      </div>
+      <div class="col-md-4 col-sm-12">
+        <button type="button" class="btn btn-info btn-block">Twitter</button>
+      </div>
+      <div class="col-md-4 col-sm-12">
+        <button type="button" class="btn btn-danger btn-block">Google+</button>
+      </div>
+    </div>
+  <hr />
+  <div class="form-group">
+    <%= f.email_field :email, { :class => ["changeable","form-control","input-lg"],
+                                :autofocus => true,
+                                :placeholder => "Email",
+                                :required => true,
+                                :id => "user_emal",} %>
+  </div>
+  <div class="form-group">
+
+
+    <%= f.password_field :password, {autocomplete: "off",
+                                     :class => ["changeable","input-lg","form-control"],
+                                     :required => true,
+                                     :placeholder => "Password",
+                                     :id => "user_password" } %>
+
+  </div>
+  <div class="form-group">
+
+    <%= f.password_field :password_confirmation,{autocomplete: "off",
+                                                 :class => ["changeable","form-control","input-lg"],
+                                                 :required => true,
+                                                 :placeholder => "Confirm Password",
+                                                 :id => "user_password_confirmation" } %>
+  </div>
+  <%= f.fields_for :user_profile  do |builder| %>
+      <%= render 'devise/shared/new_account/field_profile', :f => builder  %>
+  <% end %>
+  <div class="form-group">
+    <%= f.submit "Sign up", { :class => ["btn btn-primary btn-lg btn-block"]} %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>

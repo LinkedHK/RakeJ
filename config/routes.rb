@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   mount Ckeditor::Engine => '/ckeditor'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -29,8 +28,13 @@ Rails.application.routes.draw do
   #     end
   #   end
 
-
   root to: 'static#index'
+
+  devise_for :user, controllers: { registrations: "user_auth/registration" }
+
+  devise_scope :user do
+    get "usr/sign_up" => "user_auth/registration#new"
+  end
 
   get "/new", to: 'static#new'
   post "/create", to: 'static#create', as: 'editor_create'
@@ -46,10 +50,11 @@ Rails.application.routes.draw do
     get "/edit/:item_id", to: "item#edit", as: 'item_edit', constraints: { item_id: /\d+/ }
     post "/update/:item_id", to: "item#update_item", as: 'item_update', constraints: { item_id: /\d+/ }
   end
-
   scope "/location" do
     get "/district/:city_id", to: "location#district",constraints: { city_id: /\d+/ }
   end
+
+
 
 
 
