@@ -44,7 +44,7 @@ en:
         first_name: "First name"
         last_name: "Last name"
         company_name: "Company name"
-        account_type: "I'm:"
+        account_type: "I'm a "
     validation:
       unknown_error: "Unknown error occurred. Please reload page and try again."
       empty_title: "Please enter title."

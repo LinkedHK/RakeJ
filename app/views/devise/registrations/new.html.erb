@@ -29,7 +29,6 @@
   </div>
   <div class="form-group">
 
-
     <%= f.password_field :password, {autocomplete: "off",
                                      :class => ["changeable","input-lg","form-control"],
                                      :required => true,
@@ -47,6 +46,7 @@
   </div>
   <%= f.fields_for :user_profile  do |builder| %>
       <%= render 'devise/shared/new_account/field_profile', :f => builder  %>
+
   <% end %>
   <div class="form-group">
     <%= f.submit "Sign up", { :class => ["btn btn-primary btn-lg btn-block"]} %>

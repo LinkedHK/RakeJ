@@ -16,8 +16,6 @@
       <%= f.fields_for :field_rate  do |builder| %>
             <%= render "item/shared/new_item/field_rate" , :f => builder%>
       <% end%>
-
-
     <%= f.fields_for :item_location  do |builder| %>
         <%= render "item/shared/new_item/field_location", :f => builder %>
     <% end%>

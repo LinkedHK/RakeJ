@@ -12,4 +12,19 @@
   <%=  f.text_field :last_name, { :class =>  ["changeable","form-control","input-lg"],   :maxlength => "30", } %>
 </div>
 
+<div class="form-group">
+  <label>
+    <%= t("form_input.account.registration.account_type") %>
+  </label>
+
+  <%= f.collection_select(:profile_type_id, ProfileDescription.types_list, :id, :profile_name, {prompt: true,:selected =>  ProfileDescription.select_default},
+                          {
+                                  class: "form-control",
+                                  id: "profile_type"
+
+                          })
+      %>
+
+</div>
+
 

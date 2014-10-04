@@ -1,11 +1,1 @@
-<ul>
-    <% @dumbs.each do |dumb|  %>
-  <li style="clear:both">
-    <ul>
-      <li><%= dumb.title%></li>
-      <li><%=  sanitize_descr dumb.descr%></li>
-      <li> <%= link_to("Destroy",editor_destroy_path(dumb.id)) %> </li>
-    </ul>
-  </li>
-    <% end %>
-</ul>
+<%= render_cell :item, :list %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141003113529) do
+ActiveRecord::Schema.define(version: 20141004155919) do
 
   create_table "category_description", force: true do |t|
     t.integer "item_category_id"
@@ -136,6 +136,17 @@ ActiveRecord::Schema.define(version: 20141003113529) do
   add_index "location_district", ["location_city_id"], name: "index_location_district_on_location_city_id", using: :btree
   add_index "location_district", ["name"], name: "index_location_district_on_name", unique: true, using: :btree
 
+  create_table "profile_descriptions", force: true do |t|
+    t.string  "profile_name",    limit: 20
+    t.string  "locale",          limit: 10, default: "en_US"
+    t.integer "profile_type_id"
+  end
+
+  create_table "profile_types", force: true do |t|
+    t.integer "enabled", limit: 1, default: 0
+    t.boolean "default",           default: false
+  end
+
   create_table "sessions", force: true do |t|
     t.string   "session_id", null: false
     t.text     "data"
@@ -147,7 +158,6 @@ ActiveRecord::Schema.define(version: 20141003113529) do
   add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
 
   create_table "user_companies", force: true do |t|
-    t.integer  "user_id"
     t.string   "company_name",        limit: 50
     t.string   "company_address"
     t.text     "company_description"
@@ -157,20 +167,19 @@ ActiveRecord::Schema.define(version: 20141003113529) do
 
   create_table "user_profiles", force: true do |t|
     t.integer  "user_id"
-    t.string   "first_name", limit: 30
-    t.string   "last_name",  limit: 30
+    t.string   "first_name",        limit: 30
+    t.string   "last_name",         limit: 30
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_company_id",              default: -1
+    t.integer  "profile_type_id"
+    t.string   "profile_type_name", limit: 20
   end
 
-  create_table "user_types", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+  add_index "user_profiles", ["profile_type_id"], name: "index_user_profiles_on_profile_type_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                                             null: false
-    t.integer  "user_type",                         default: 0
     t.integer  "admin",                             default: 0
     t.integer  "account_status",                    default: 1
     t.boolean  "verified",                          default: false

@@ -8,8 +8,7 @@ class UserAuth::RegistrationController < Devise::RegistrationsController
 
   def sign_up_params
     params.require(:user).permit(:email,:password, :password_confirmation,
-                                         user_profile_attributes: [:first_name,:last_name]
-          )
+                                         user_profile_attributes: [:first_name,:last_name,:profile_type_id])
   end
 
 
