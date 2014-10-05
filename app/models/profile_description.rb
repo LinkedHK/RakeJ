@@ -8,8 +8,11 @@ class ProfileDescription < ActiveRecord::Base
   result =  self.joins('Inner join  `profile_types`  on
 `profile_descriptions` .`profile_type_id` =  `profile_types`.`id` where profile_descriptions.locale = "en_US"and profile_types.default = 1 ')
     .select('profile_types.id as `default` ').first
-
-  result.default
+    if result
+      result.default
+    else
+      result
+    end
   end
 
 end

@@ -2,5 +2,7 @@
 
 FactoryGirl.define do
   factory :profile_description do
+
+
   end
 end

@@ -5,6 +5,7 @@ require 'capybara/poltergeist'
 
 Capybara.configure do |c|
   #c.javascript_driver = :poltergeist
+  c.javascript_driver = :selenium
   c.default_wait_time = 5
 end
 

@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   has_many :items
   has_one :user_company
-  has_one :user_profile
+  has_one :user_profile, :dependent => :destroy
 
   accepts_nested_attributes_for :user_company
   accepts_nested_attributes_for :user_profile

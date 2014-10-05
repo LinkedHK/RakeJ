@@ -20,7 +20,6 @@ describe 'accessibility of webpage' do
     city = @location.location_city
     tags = FactoryGirl.build(:item_tag).attributes
     visit item_new_path
-    puts "Accessing Page! " .colorize(:yellow)
     page.fill_in "item_title" , :with => @descr["item_title"]
     page.fill_in "item_description" , :with => @descr["description_text"]
     page.fill_in "item_description" , :with => @descr["description_text"]

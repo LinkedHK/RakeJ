@@ -25,7 +25,7 @@
                                 :autofocus => true,
                                 :placeholder => "Email",
                                 :required => true,
-                                :id => "user_emal",} %>
+                                :id => "email",} %>
   </div>
   <div class="form-group">
 
@@ -33,7 +33,7 @@
                                      :class => ["changeable","input-lg","form-control"],
                                      :required => true,
                                      :placeholder => "Password",
-                                     :id => "user_password" } %>
+                                     :id => "password" } %>
 
   </div>
   <div class="form-group">
@@ -42,14 +42,14 @@
                                                  :class => ["changeable","form-control","input-lg"],
                                                  :required => true,
                                                  :placeholder => "Confirm Password",
-                                                 :id => "user_password_confirmation" } %>
+                                                 :id => "password_confirmation" } %>
   </div>
   <%= f.fields_for :user_profile  do |builder| %>
       <%= render 'devise/shared/new_account/field_profile', :f => builder  %>
 
   <% end %>
   <div class="form-group">
-    <%= f.submit "Sign up", { :class => ["btn btn-primary btn-lg btn-block"]} %>
+    <%= f.submit "Sign up", { :id => ["submit_user"], :class => ["btn btn-primary btn-lg btn-block"]} %>
   </div>
 <% end %>
 

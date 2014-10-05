@@ -11,6 +11,9 @@ class UserAuth::RegistrationController < Devise::RegistrationsController
                                          user_profile_attributes: [:first_name,:last_name,:profile_type_id])
   end
 
+  def after_sign_up_path_for(resource)
+    url_for :item_index
+  end
 
 
 end

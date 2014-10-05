@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   devise_for :user, controllers: { registrations: "user_auth/registration" }
 
   devise_scope :user do
-    get "usr/sign_up" => "user_auth/registration#new"
+    get "usr/sign_up" => "user_auth/registration#new", as: 'user_signup'
   end
 
   get "/new", to: 'static#new'
