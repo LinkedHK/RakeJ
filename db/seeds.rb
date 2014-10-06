@@ -5,3 +5,19 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+categories = [
+    [-1, 'Accounting'],
+    [-1, 'HR'],
+    [-1, 'Banking / Finance'],
+    [-1, 'Marketing / Public Relations'],
+    [-1, 'Design'],
+    [-1, 'Sales, CS & Business Dev'],
+    [-1, 'Engineering']
+]
+categories.each do |parent_id,description|
+ cat = ItemCategory.create(parent_id: parent_id)
+  CategoryDescription.create(item_category: cat,name: description )
+
+end

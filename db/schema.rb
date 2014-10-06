@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141004155919) do
+ActiveRecord::Schema.define(version: 20141006075548) do
 
   create_table "category_description", force: true do |t|
     t.integer "item_category_id"
@@ -69,8 +69,9 @@ ActiveRecord::Schema.define(version: 20141004155919) do
   add_index "field_rate", ["item_id"], name: "index_field_rate_on_item_id", unique: true, using: :btree
 
   create_table "item_categories", force: true do |t|
-    t.integer "parent_id",           default: -1
-    t.integer "enabled",   limit: 1, default: 0
+    t.integer "parent_id",             default: -1
+    t.integer "enabled",     limit: 1, default: 0
+    t.integer "items_count",           default: 0,  null: false
   end
 
   add_index "item_categories", ["enabled"], name: "index_item_categories_on_enabled", using: :btree

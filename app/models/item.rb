@@ -4,7 +4,7 @@ class Item < ActiveRecord::Base
   has_many :item_descriptions,  :dependent => :destroy
   has_one :field_rate, :dependent => :destroy, inverse_of: :item
   has_one :item_location,  inverse_of: :item,  :dependent => :destroy
-  belongs_to :item_category
+  belongs_to :item_category,counter_cache: true
 
   accepts_nested_attributes_for :item_descriptions
   accepts_nested_attributes_for :item_location

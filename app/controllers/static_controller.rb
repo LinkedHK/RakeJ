@@ -2,7 +2,10 @@ class StaticController < ApplicationController
 
   def index
 
-    @dumbs= DemoEditor.all.order('created_at DESC')
+    @cat = ItemCategoryPresenter.new(CategoryDescription.all)
+
+
+
 
   end
 

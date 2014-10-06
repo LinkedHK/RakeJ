@@ -5,6 +5,11 @@ class UserAuth::RegistrationController < Devise::RegistrationsController
     build_resource({user_profile_attributes: {}})
     respond_with self.resource
   end
+  def create
+    puts " Create params #{sign_up_params.inspect}" .colorize(:red)
+    super
+
+  end
 
   def sign_up_params
     params.require(:user).permit(:email,:password, :password_confirmation,

@@ -13,24 +13,25 @@ RSpec.describe UserAuth::RegistrationController, :type => :controller do
     end
 
     it "Access signup page" do
-
       get :new
       query_log
       expect(response).to have_http_status(200)
     end
 
     it "Submit signup user" do
-=begin
-      @user_nest= FactoryGirl.build(:user).attributes
+
+      @user_nest= FactoryGirl.build(:user)
       @profile_nest= FactoryGirl.build(:user_profile).attributes
       expect{
 
-        post  :create, user:  @user_nest,
-                               user_profile_attributes: [@profile_nest]
-      }.to change(User,:count).by(1)
-      expect(UserProfile.count).to eq(1)
-=end
+        post  :create, user: { email: @user_nest.email,
+                               password: @user_nest.password,
+                               password_confirmation: @user_nest.password,
+                               user_profile_attributes: @profile_nest
 
+
+        }
+      }.to change(User,:count).by(1)
 
     end
 
