@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141006075548) do
+ActiveRecord::Schema.define(version: 20141007055914) do
 
   create_table "category_description", force: true do |t|
     t.integer "item_category_id"
-    t.string  "name",             limit: 100
-    t.string  "locale",           limit: 5,   default: "en_US"
+    t.string  "name",             default: "",      null: false
+    t.string  "locale",           default: "en_US", null: false
   end
 
   add_index "category_description", ["item_category_id"], name: "index_category_description_on_item_category_id", using: :btree
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 20141006075548) do
     t.integer "parent_id",             default: -1
     t.integer "enabled",     limit: 1, default: 0
     t.integer "items_count",           default: 0,  null: false
+    t.string  "slug",                  default: "", null: false
   end
 
   add_index "item_categories", ["enabled"], name: "index_item_categories_on_enabled", using: :btree

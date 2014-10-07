@@ -4,6 +4,7 @@
         this.$lastSelected = null;
         this.$result_wrapper = $("#secondary_result");
         this.item_id = "data_item_id";
+        this.item_slug = "data_item_slug";
         this.response_cache = [];
         this.MAX_CACHE = 100;
         this.init_listeners();
@@ -22,7 +23,7 @@
             if(self.isSelected(element)) return;
             self.selectElement(element);
             var id = self.getId(element);
-            self.getResult(id);
+            self.getResult(element);
         })
     };
     WIDGET_item_list.prototype.selectFirstElement = function(){
@@ -37,22 +38,29 @@
     WIDGET_item_list.prototype.isSelected = function($element){
      return $element.hasClass("selected");
     };
+    WIDGET_item_list.prototype.getSlug = function($element){
+        return $element.attr(this.item_slug);
+    }
     WIDGET_item_list.prototype.getId = function($element){
         return $element.attr(this.item_id);
     };
-    WIDGET_item_list.prototype.getResult = function(id){
+    WIDGET_item_list.prototype.getResult = function(element){
+
+        var id = this.getId(element);
         var cached = this.getCached(id);
         var self =this;
         if(cached){
             return  this.setItemContent(cached);
         }else{
-            this.makeItemRequest(id,function(response, item_id){
+            this.makeItemRequest(element,function(response, item_id){
                 self.OnResponse(response,item_id)
             });
         }
     };
-    WIDGET_item_list.prototype.makeItemRequest = function(id, response_callback){
-        var show_url =  Routes.item_show_path({ id: id, format: 'json'});
+    WIDGET_item_list.prototype.makeItemRequest = function(element, response_callback){
+        var id = this.getId(element);
+        var slug = this.getSlug(element);
+        var show_url =  Routes.item_show_path({ item_id: id,slug: slug});
         var item_id = id;
         var self = this;
         $.ajax({

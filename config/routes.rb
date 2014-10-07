@@ -40,15 +40,18 @@ Rails.application.routes.draw do
   post "/create", to: 'static#create', as: 'editor_create'
   get "/destroy/:id", to: 'static#destroy', as: 'editor_destroy'
 
-  scope "/item" do
+
+    scope "/item" do
     get "/", to: "item#index", as: 'item_index'
+    get "/:slug", to: "item#browse", as: 'item_browse',constraints: { slug: /[a-zA-Z0-9_-]+/ }
     get "/new", to: "item#new", as: 'item_new'
     post "/create", to: "item#create", as: 'item_create'
     post "/screate", to: "item#screate", as: 'item_screate'
     post "/demo", to: "item#demo", as: 'item_demo'
-    get "/show/:item_id", to: "item#show", as: 'item_show', constraints: { item_id: /\d+/ }
-    get "/edit/:item_id", to: "item#edit", as: 'item_edit', constraints: { item_id: /\d+/ }
+    get "(/:slug)/:item_id", to: "item#show", as: 'item_show',constraints: { slug: /[a-zA-Z0-9_-]+/ ,item_id: /\d+/}
+  #  get "/edit/:item_id", to: "item#edit", as: 'item_edit', constraints: { item_id: /\d+/ }
     post "/update/:item_id", to: "item#update_item", as: 'item_update', constraints: { item_id: /\d+/ }
+   #get "/browse/:slug", to: "item#browse",constraints: { slug: /[a-zA-Z0-9_-]+/ }  #/(?=.{1,20}$)[a-zA-Z0-9_]+/ restricted length
   end
   scope "/location" do
     get "/district/:city_id", to: "location#district",constraints: { city_id: /\d+/ }
@@ -56,7 +59,7 @@ Rails.application.routes.draw do
 
 
 
-
+# /[^A-Za-z0-9_]/
 
   # Example resource route with sub-resources:
   #   resources :products do

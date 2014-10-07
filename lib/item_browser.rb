@@ -1,4 +1,4 @@
-class ItemCreator
+class ItemBrowser
   attr_accessor :errors
 
   def self.build

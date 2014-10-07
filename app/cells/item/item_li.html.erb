@@ -1,6 +1,6 @@
 
-<div class="item_result_cell" data_item_id="<%= @item.id %>" id="itemid<%= @item.id %>">
-  <div class="item_title"> <%=  link_to @item.title,item_show_path(@item.id) %> </div>
+<div class="item_result_cell" data_item_id="<%= @item.id %>" data_item_slug="<%= @item.slug %>" id="itemid<%= @item.id %>">
+  <div class="item_title"> <%=  link_to @item.title,  item_show_path({:item_id => @item.id,:slug => @item.slug}) %> </div>
   <div class="item_location"> <%= @item.location %> </div>
   <div class="item_created"> <%= @item.created %> </div>
 </div>

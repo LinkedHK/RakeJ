@@ -1,4 +1,5 @@
 class ItemCategory < ActiveRecord::Base
+  include Concerns::Item::Browseable
   self.table_name = 'item_categories'
   has_many :items
   has_many :category_descriptions, :dependent => :destroy

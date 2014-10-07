@@ -3,7 +3,6 @@ class ItemCategoryPresenter < PresenterBase
   include ActionView::Helpers::TagHelper
   include ActionView::Helpers::OutputSafetyHelper
 
-
   def tree(column_num = 2, &block)
     @categories = model.all.where(:locale => 'en_US')
     length = @categories.length

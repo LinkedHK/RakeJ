@@ -1,6 +1,12 @@
 class ItemCell < Cell::ViewModel
-  def list
-    @items = ItemPresenter.new(Item.all.limit(10))
+  def list(category = nil, limit = 10)
+    result = nil
+    if category
+      result  = ItemCategory.browse(category,limit)
+    else
+      result = Item.all.limit(limit)
+    end
+    @items = ItemPresenter.new(result)
     render
   end
   def item_li(item)

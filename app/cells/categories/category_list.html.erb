@@ -1,14 +1,10 @@
 
 <div class="page-header">
-
   Categories
-
 </div>
 
 <div class="container col-md-1">
-  <% @cat.tree(4)  do |element| %>
-
+  <% @cat.tree(@column_num)  do |element| %>
       <%= element %>
-
   <% end %>
 </div>

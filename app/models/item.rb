@@ -11,6 +11,9 @@ class Item < ActiveRecord::Base
   accepts_nested_attributes_for :field_rate
   validate :check_category
 
+  attr_reader :slug
+
+
   def self.build
    item = self.new
    item.item_descriptions.build
@@ -18,6 +21,15 @@ class Item < ActiveRecord::Base
    item.item_tags.build
    item.build_field_rate
   item
+  end
+
+  def slug
+   category =  self.item_category
+   slug = category.slug
+    if slug.blank?
+      slug = category.id
+    end
+    slug
   end
 
   def check_category

@@ -1,11 +1,8 @@
 class ItemController < ApplicationController
 
   def index
-    @items = ItemPresenter.new(Item.all.limit(10))
-
-
     respond_to do |format|
-      format.json{ render json: Item.all.limit(10).as_json(Item.show_as_json) }
+     # format.json{ render json: Item.all.limit(10).as_json(Item.show_as_json) }
       format.html
     end
   end
@@ -30,8 +27,13 @@ class ItemController < ApplicationController
     end
   end
 
+  def browse
+    @category = params['slug']
+  end
+
   def show
-    @item = ItemPresenter.new(Item.find_by(id: params[:item_id]))
+    @item = ItemPresenter.new(Item.where(id: params[:item_id]).first)
+
     respond_to do |format|
       if request.xhr?
         format.html{ render :partial => 'item/shared/ajax/show'}
@@ -54,6 +56,8 @@ class ItemController < ApplicationController
                         field_rate_attributes: [:rate_number,:field_currency_id, :negotiable,:rate_min,:rate_max]
                       )
   end
+
+
 
 
 
