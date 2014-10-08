@@ -7,8 +7,14 @@ class ItemCell < Cell::ViewModel
       result = Item.all.limit(limit)
     end
     @items = ItemPresenter.new(result)
-    render
+    if @items.blank?
+      puts "Nothing Found!"
+    else
+      render
+    end
+
   end
+
   def item_li(item)
     @item = item
     render

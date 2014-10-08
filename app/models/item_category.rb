@@ -5,9 +5,7 @@ class ItemCategory < ActiveRecord::Base
   has_many :category_descriptions, :dependent => :destroy
   has_many :childs, class_name: "ItemCategory",
                     foreign_key: "parent_id", :dependent => :destroy
-
   belongs_to :parent,class_name: "ItemCategory"
-
 
 
 

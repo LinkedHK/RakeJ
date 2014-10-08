@@ -44,9 +44,8 @@ Rails.application.routes.draw do
     scope "/item" do
     get "/", to: "item#index", as: 'item_index'
     get "/:slug", to: "item#browse", as: 'item_browse',constraints: { slug: /[a-zA-Z0-9_-]+/ }
-    get "/new", to: "item#new", as: 'item_new'
-    post "/create", to: "item#create", as: 'item_create'
-    post "/screate", to: "item#screate", as: 'item_screate'
+    get "/action/new", to: "item#new", as: 'item_new'
+    post "/action/create", to: "item#create", as: 'item_create'
     post "/demo", to: "item#demo", as: 'item_demo'
     get "(/:slug)/:item_id", to: "item#show", as: 'item_show',constraints: { slug: /[a-zA-Z0-9_-]+/ ,item_id: /\d+/}
   #  get "/edit/:item_id", to: "item#edit", as: 'item_edit', constraints: { item_id: /\d+/ }

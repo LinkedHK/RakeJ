@@ -22,6 +22,7 @@ FactoryGirl.define do
   factory :item_category do |f|
     f.parent_id -1
     f.enabled 1
+    f.slug 'test'
     after(:create) do |item_category|
       FactoryGirl.create(:category_description,item_category: item_category)
     end

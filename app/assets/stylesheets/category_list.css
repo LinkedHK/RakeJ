@@ -1,0 +1,40 @@
+#main_category_list ul{
+    width: 30%;
+    float: left;
+    list-style-type: circle;
+}
+
+#main_category_list ul li{
+    color: green;
+}
+@media (max-width: 730px){
+    #main_category_list ul{
+        font-size: 1em;
+        line-height: 1.6;
+        margin-bottom: 1.25em;
+        list-style-position: outside;
+        font-family: inherit;
+        width: 100%;
+        float: none;
+    }
+
+    #main_category_list ul li{
+        list-style-type: none;
+        border-left: 1px solid #ccc;
+        border-right: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+        position: relative;
+    }
+
+
+    #main_category_list ul li a{
+        display: block;
+        padding-left: 20px;
+        padding-right: 30px;
+        padding-bottom: 15px;
+        padding-top: 15px;
+    }
+    #main_category_list ul li  a:hover {
+        background-color: #eee;
+    }
+}

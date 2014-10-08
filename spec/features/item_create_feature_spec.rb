@@ -38,12 +38,13 @@ describe 'accessibility of webpage' do
   sleep(2)
    # expect(page).to have_content(I18n.t("form_input.item.item_creation_successfull"))
   expect(Item.all.count).to eq(1)
-  expect(current_path).to eq(item_show_path(Item.first.id))
+  item = Item.first.id
+  expect(current_path).to eq(item_show_path({item_id: item.id,slug: item.slug}))
   end
 
   it 'should show item', :js => true  do
    item = ItemPresenter.new(FactoryGirl.create(:item_with_description))
-  visit item_show_path(item.id)
+  visit item_show_path({item_id: item.id,slug: item.slug})
    expect(page).to have_content(item.title)
    expect(page).to have_content(item.description)
    expect(page).to have_content(item.salary_range)
