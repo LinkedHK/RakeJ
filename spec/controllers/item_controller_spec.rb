@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe ItemController, :type => :controller do
 
 
-
   describe "Page Accessibility" do
 
     it "Add item page " do

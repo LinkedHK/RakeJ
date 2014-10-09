@@ -30,6 +30,8 @@ gem 'cells'
 gem "js-routes"
 gem 'devise'
 
+#gem 'mobile-fu', '~> 1.3.1'
+
 
 group :test do
   gem "factory_girl_rails"

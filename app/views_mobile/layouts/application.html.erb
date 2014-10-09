@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RackJobs</title>
+  <meta name=viewport content="width=device-width, initial-scale=1">
+  <%= stylesheet_link_tag    'mobile', media: 'all' %>
+  <%= stylesheet_link_tag    '/js_mobile/jquery.mobile-1.4.4.min.css' %>
+  <%= javascript_include_tag 'mobile' %>
+  <%= javascript_include_tag    '/js_mobile/jquery.mobile-1.4.4.min.js' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div style="margin-top: 50px " class="container theme-showcase" role="main">
+<h1>Hello Mobile!</h1>
+      <%= yield %>
+</div>
+
+</body>
+</html>

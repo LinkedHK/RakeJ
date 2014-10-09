@@ -3,15 +3,15 @@
 <head>
   <title>RackJobs</title>
   <meta name=viewport content="width=device-width, initial-scale=1">
-  <%= stylesheet_link_tag    'application', media: 'all' %>
-  <%= javascript_include_tag 'application' %>
+  <%= stylesheet_link_tag    'front', media: 'all' %>
+  <%= javascript_include_tag 'front' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 <%= render 'layouts/header' %>
 <div style="margin-top: 50px " class="container theme-showcase" role="main">
 
-<%= yield %>
+      <%= yield %>
 </div>
 
 </body>

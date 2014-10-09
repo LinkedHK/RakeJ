@@ -1,12 +1,12 @@
 class StaticController < ApplicationController
 
+  before_filter :check_for_mobile
+
+
   def index
-
-    @cat = ItemCategoryPresenter.new(CategoryDescription.all)
-
-
-
-
+    respond_to do |format|
+      format.html
+    end
   end
 
   def new

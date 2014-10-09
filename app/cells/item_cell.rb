@@ -12,7 +12,6 @@ class ItemCell < Cell::ViewModel
     else
       render
     end
-
   end
 
   def item_li(item)

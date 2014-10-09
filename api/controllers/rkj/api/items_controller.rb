@@ -6,5 +6,4 @@ module RKJ
       end
     end
   end
-
 end
