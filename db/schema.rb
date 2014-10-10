@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141007055914) do
+ActiveRecord::Schema.define(version: 20141010170849) do
 
   create_table "category_description", force: true do |t|
     t.integer "item_category_id"
@@ -119,13 +119,16 @@ ActiveRecord::Schema.define(version: 20141007055914) do
   create_table "location_city", force: true do |t|
     t.integer "location_country_id"
     t.string  "name"
+    t.boolean "default",             default: false, null: false
   end
 
+  add_index "location_city", ["default"], name: "index_location_city_on_default", using: :btree
   add_index "location_city", ["location_country_id"], name: "index_location_city_on_location_country_id", using: :btree
   add_index "location_city", ["name"], name: "index_location_city_on_name", unique: true, using: :btree
 
   create_table "location_country", force: true do |t|
-    t.string "name", null: false
+    t.string  "name",                    null: false
+    t.boolean "default", default: false, null: false
   end
 
   add_index "location_country", ["name"], name: "index_location_country_on_name", unique: true, using: :btree

@@ -1,5 +1,6 @@
 class Item < ActiveRecord::Base
   include Concerns::Taggable
+  include Concerns::Item::Searchable
 
   has_many :item_descriptions,  :dependent => :destroy
   has_one :field_rate, :dependent => :destroy, inverse_of: :item

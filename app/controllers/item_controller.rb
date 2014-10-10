@@ -28,7 +28,7 @@ class ItemController < ApplicationController
   end
 
   def browse
-    @category = params['slug']
+    @result  = ItemCategory.browse(params['slug'])
   end
 
   def show
@@ -41,6 +41,11 @@ class ItemController < ApplicationController
         format.html
         format.json { render json: @item.as_json(Item.show_as_json) }
     end
+  end
+
+  def main_search
+    @result = Item.main_search(main_search_params)
+    render json: { :result => @result}
   end
 
   def edit
@@ -57,16 +62,13 @@ class ItemController < ApplicationController
                       )
   end
 
-
-
-
-
-  def item_categories
-
-
-
-
+  def main_search_params
+    params.require(:item).permit(:item_category_id,
+                                 item_location_attributes: [:location_district_id],
+                             )
   end
+
+
 
 
 

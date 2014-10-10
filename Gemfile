@@ -16,7 +16,7 @@ gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 #gem 'simple_capt--cha', :git => 'git://github.com/galetahub/simple-captcha.git'
 
 gem 'jquery-rails'
-gem 'turbolinks'
+#gem 'turbolinks'
 
 gem 'ckeditor'
 gem "sanitize"

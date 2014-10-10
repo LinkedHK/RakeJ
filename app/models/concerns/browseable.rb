@@ -25,13 +25,10 @@ module Concerns
         try_to_find_item(result)
       end
       def try_to_find_item(result)
-        if result.blank?
-          nil
-        else
-          result.items.limit(@limit)
+          result.items.limit(@limit) if result
         end
       end
 
     end
  end
-end
+

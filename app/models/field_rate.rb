@@ -22,6 +22,10 @@ class FieldRate <  ActiveRecord::Base
     end
   end
 
+  def self.list_rate
+
+  end
+
 end
 
 

@@ -2,6 +2,11 @@ class LocationDistrict < ActiveRecord::Base
   self.table_name = "location_district"
   belongs_to :location_city
 
+  def self.default_list
+    self.joins(:location_city).where('location_city.default = 1')
+
+  end
+
 
 
 
