@@ -33,7 +33,6 @@ class ItemController < ApplicationController
 
   def show
     @item = ItemPresenter.new(Item.where(id: params[:item_id]).first)
-
     respond_to do |format|
       if request.xhr?
         format.html{ render :partial => 'item/shared/ajax/show'}
@@ -43,9 +42,10 @@ class ItemController < ApplicationController
     end
   end
 
+
   def main_search
     @result = Item.main_search(main_search_params)
-    render json: { :result => @result}
+    render 'item/browse'
   end
 
   def edit

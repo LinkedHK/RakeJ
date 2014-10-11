@@ -35,7 +35,6 @@
     };
 
     WIDGET_item_list.prototype.selectFirstElement = function(){
-        if(RjApp.is_mobile()) return;
         this.$parentList.children().first().click();
     };
     WIDGET_item_list.prototype.selectElement = function($element){

@@ -14,6 +14,7 @@ class Item < ActiveRecord::Base
 
   attr_reader :slug
 
+
   def self.build
    item = self.new
    item.item_descriptions.build
