@@ -1,5 +1,5 @@
 class ItemController < ApplicationController
-
+  before_filter :check_for_mobile, only: [:browse,:main_search]
   def index
     respond_to do |format|
      # format.json{ render json: Item.all.limit(10).as_json(Item.show_as_json) }
@@ -29,6 +29,10 @@ class ItemController < ApplicationController
 
   def browse
     @result  = ItemCategory.browse(params['slug'])
+    respond_to do |format|
+      # format.json{ render json: Item.all.limit(10).as_json(Item.show_as_json) }
+      format.html
+    end
   end
 
   def show

@@ -6,8 +6,6 @@ class CategoriesCell <  Cell::ViewModel
     locale = args[:locale] ?  args[:locale] : 'en_US'
     @cat = ItemCategoryPresenter.new(CategoryDescription.all.where(:locale => locale))
 
-
-
     render
 
   end

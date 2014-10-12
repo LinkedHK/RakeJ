@@ -4,6 +4,7 @@ class ItemCell < Cell::ViewModel
   include ActionView::Helpers::FormOptionsHelper
   include ActionView::RecordIdentifier
   def list(items = nil)
+    #puts "Items #{items}".colorize(:red)
     @items = ItemPresenter.new(items)
     if @items.blank?
       puts "Nothing Found!"
@@ -11,6 +12,21 @@ class ItemCell < Cell::ViewModel
       render
     end
   end
+
+  def list_mobile(items = nil)
+
+    puts "Items #{items}".colorize(:red)
+
+    @items = ItemPresenter.new(items)
+    if @items.blank?
+      puts "Nothing Found!"
+    else
+      render
+    end
+  end
+
+
+
   def item_li(item)
     @item = item
     render

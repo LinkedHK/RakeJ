@@ -1,13 +1,5 @@
-
-
-<script>
-  $(document).ready(function(){
-        var item_list = new WIDGET_item_list({});
-  });
-</script>
-
 <div style="height: 50px"></div>
-<section id="item_list_section"  class="primary_preview_item preview_list">
+<section id="mobile_item_list_section"  class="primary_preview_item preview_list">
   <div class="item_container" id="item_scroll_area">
     <% @items.list_items do |item| %>
         <div class="item_result_cell" data_item_id="<%= item.id %>" data_item_slug="<%= item.slug %>" id="itemid<%= item.id %>">
@@ -15,13 +7,6 @@
           <div class="item_location"> <%= item.location %> </div>
           <div class="item_created"> <%= item.created %> </div>
         </div>
-
   <% end %>
   </div>
-</section>
-<section id="secondary_result_wrapper" class="secondary_preview_result">
-  <div id="secondary_result">
-
-  </div>
-
 </section>
