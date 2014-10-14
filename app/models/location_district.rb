@@ -3,14 +3,9 @@ class LocationDistrict < ActiveRecord::Base
   belongs_to :location_city
 
   def self.default_list
-    self.joins(:location_city).where('location_city.default = 1')
+    self.joins(:location_city).where('location_city.default_city = 1')
 
   end
-
-
-
-
-
 end
 
 # == Schema Information

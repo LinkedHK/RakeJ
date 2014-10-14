@@ -1,17 +1,17 @@
 require 'faker'
 FactoryGirl.define do
   factory :item do |f|
-    association :item_category
     factory :item_with_description do
-      after(:create) do |item|
-       category = FactoryGirl.create(:item_category)
+      before(:create) do |item|
+        category = FactoryGirl.create(:item_category)
         item.item_category_id = category.id
+      end
+      after(:create) do |item|
         FactoryGirl.create(:item_description,item: item)
         FactoryGirl.create(:item_location,:with_locations, item: item)
         FactoryGirl.create(:field_rate,:with_currency, item: item)
         FactoryGirl.create(:item_tag,item: item)
       end
-
     end
 
   end

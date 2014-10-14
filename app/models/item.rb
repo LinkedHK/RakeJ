@@ -4,7 +4,7 @@ class Item < ActiveRecord::Base
 
   has_many :item_descriptions,  :dependent => :destroy
   has_one :field_rate, :dependent => :destroy, inverse_of: :item
-  has_one :item_location,  inverse_of: :item,  :dependent => :destroy
+  has_one :item_location
   belongs_to :item_category,counter_cache: true
 
   accepts_nested_attributes_for :item_descriptions
@@ -13,6 +13,8 @@ class Item < ActiveRecord::Base
   validate :check_category
 
   attr_reader :slug
+ # attr_accessor :item_category_id
+  #attr_accessor :item_location
 
 
   def self.build
@@ -25,14 +27,13 @@ class Item < ActiveRecord::Base
   end
 
   def slug
-   category =  self.item_category
+   category = self.item_category
    slug = category.slug
     if slug.blank?
       slug = category.id
     end
     slug
   end
-
   def check_category
     category_id =  ItemCategory.find_by(id: self.item_category_id )
     unless category_id

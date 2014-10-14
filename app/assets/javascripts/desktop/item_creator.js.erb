@@ -4,7 +4,7 @@
         this.$selectCity =  option.selectCity ||  $("#location_city");
         this.$selectDistrict = option.selectDistrict || $("#location_district");
         this.$tagsEditor = option.tagsEditor || $("#tags_editor");
-        this.$formUrl = option.formUrl ||   Routes.item_create_path;
+        this.$formUrl = option.formUrl ||   Routes.item_create_path();
         this.$tagIndicator = option.tagIndicator  || $("#tag_number");
         this.$buttonSubmit = $("#submit_item");
         /*@Todo Dump Solution!*/
@@ -66,6 +66,7 @@
             e.preventDefault();
             self.disableButton(true);
             var content = $(this).serialize();
+            console.log("Form Url "  + self.$formUrl);
             $.ajax({
                 url: self.$formUrl,
                 data: content,

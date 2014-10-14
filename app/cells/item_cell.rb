@@ -3,6 +3,7 @@ class ItemCell < Cell::ViewModel
   include ActionView::Helpers::FormTagHelper
   include ActionView::Helpers::FormOptionsHelper
   include ActionView::RecordIdentifier
+
   def list(items = nil)
     #puts "Items #{items}".colorize(:red)
     @items = ItemPresenter.new(items)

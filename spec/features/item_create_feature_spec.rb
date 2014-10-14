@@ -38,7 +38,7 @@ describe 'accessibility of webpage' do
   sleep(2)
    # expect(page).to have_content(I18n.t("form_input.item.item_creation_successfull"))
   expect(Item.all.count).to eq(1)
-  item = Item.first.id
+  item = Item.first
   expect(current_path).to eq(item_show_path({item_id: item.id,slug: item.slug}))
   end
 

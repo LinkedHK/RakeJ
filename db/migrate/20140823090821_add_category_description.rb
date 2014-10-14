@@ -1,8 +1,6 @@
 class AddCategoryDescription < ActiveRecord::Migration
   def change
 
-    drop_table(:category_description)
-
     create_table :category_description do |f|
       f.belongs_to :item_category
       f.string :name, limit: 100

@@ -3,7 +3,7 @@ class LocationCity < ActiveRecord::Base
   belongs_to :location_country,touch: true
   has_many :location_districts
   def default
-    self.where(:default => 1)
+    self.where(:default_city => 1)
   end
 end
 

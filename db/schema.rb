@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141010170849) do
+ActiveRecord::Schema.define(version: 20141014103635) do
 
   create_table "category_description", force: true do |t|
     t.integer "item_category_id"
@@ -58,10 +58,10 @@ ActiveRecord::Schema.define(version: 20141010170849) do
 
   create_table "field_rate", force: true do |t|
     t.integer "item_id"
+    t.integer "rate_min",                     default: 0
     t.string  "currency",          limit: 10
     t.string  "currency_info",     limit: 5
     t.integer "field_currency_id"
-    t.integer "rate_min",                     default: 0
     t.integer "rate_max",                     default: 0
     t.integer "negotiable",        limit: 1,  default: 0
   end
@@ -119,10 +119,10 @@ ActiveRecord::Schema.define(version: 20141010170849) do
   create_table "location_city", force: true do |t|
     t.integer "location_country_id"
     t.string  "name"
-    t.boolean "default",             default: false, null: false
+    t.boolean "default_city",        default: false, null: false
   end
 
-  add_index "location_city", ["default"], name: "index_location_city_on_default", using: :btree
+  add_index "location_city", ["default_city"], name: "index_location_city_on_default_city", using: :btree
   add_index "location_city", ["location_country_id"], name: "index_location_city_on_location_country_id", using: :btree
   add_index "location_city", ["name"], name: "index_location_city_on_name", unique: true, using: :btree
 
@@ -139,7 +139,7 @@ ActiveRecord::Schema.define(version: 20141010170849) do
   end
 
   add_index "location_district", ["location_city_id"], name: "index_location_district_on_location_city_id", using: :btree
-  add_index "location_district", ["name"], name: "index_location_district_on_name", unique: true, using: :btree
+  add_index "location_district", ["name"], name: "index_location_district_on_name", using: :btree
 
   create_table "profile_descriptions", force: true do |t|
     t.string  "profile_name",    limit: 20

@@ -4,8 +4,8 @@ module Concerns
     included do
       attr_accessor :limit
       attr_accessor :offset
-     attr_accessor :item_category_id
-      attr_accessor :item_location_attributes
+     #attr_accessor :item_category_id
+      #attr_accessor :item_location_attributes
     end
     module ClassMethods
       include Concerns::Item::Filterable

@@ -31,10 +31,9 @@ gem "js-routes"
 gem 'devise'
 
 #gem 'mobile-fu', '~> 1.3.1'
-
+gem 'seed-fu', '~> 2.3'
 
 group :test do
-  gem "factory_girl_rails"
   gem "faker"
   gem 'capybara'
   gem 'poltergeist'
@@ -48,6 +47,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'rspec-collection_matchers'
   gem 'colorize', :git => "git://github.com/fazibear/colorize.git"
+  gem 'factory_girl_rails'
 
 end
 group :development do

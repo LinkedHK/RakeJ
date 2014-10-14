@@ -24,6 +24,10 @@ class ItemPresenter < PresenterBase
   end
   def rate
     r = field_rate
+    unless r
+      return "Not specified"
+    end
+
     if r.negotiable == 1
       I18n.t("form_input.item.item_negotiable")
     else
