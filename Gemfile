@@ -9,9 +9,7 @@ gem 'mysql2'
 
 
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
-gem 'omniauth'
 #gem 'open_uri_redirections'
-gem 'omniauth-facebook'
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 #gem 'simple_capt--cha', :git => 'git://github.com/galetahub/simple-captcha.git'
 
@@ -28,10 +26,18 @@ gem 'oj'
 
 gem 'cells'
 gem "js-routes"
+
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
 
 #gem 'mobile-fu', '~> 1.3.1'
 gem 'seed-fu', '~> 2.3'
+gem 'kaminari'
+
+
 
 group :test do
   gem "faker"

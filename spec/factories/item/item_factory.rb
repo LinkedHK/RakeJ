@@ -7,10 +7,10 @@ FactoryGirl.define do
         item.item_category_id = category.id
       end
       after(:create) do |item|
-        FactoryGirl.create(:item_description,item: item)
+        FactoryGirl.create(:item_description, item: item)
         FactoryGirl.create(:item_location,:with_locations, item: item)
         FactoryGirl.create(:field_rate,:with_currency, item: item)
-        FactoryGirl.create(:item_tag,item: item)
+        FactoryGirl.create(:item_tag, item: item)
       end
     end
 

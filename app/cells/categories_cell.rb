@@ -1,6 +1,6 @@
 class CategoriesCell <  Cell::ViewModel
   include ActionView::Helpers::CacheHelper
-
+  include Kaminari::ActionViewExtension
 
   def category_list(args)
 

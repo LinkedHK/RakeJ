@@ -3,7 +3,7 @@ class ItemCell < Cell::ViewModel
   include ActionView::Helpers::FormTagHelper
   include ActionView::Helpers::FormOptionsHelper
   include ActionView::RecordIdentifier
-
+  include Kaminari::ActionViewExtension
   def list(items = nil)
     #puts "Items #{items}".colorize(:red)
     @items = ItemPresenter.new(items)
@@ -13,7 +13,6 @@ class ItemCell < Cell::ViewModel
       render
     end
   end
-
   def list_mobile(items = nil)
 
     puts "Items #{items}".colorize(:red)
@@ -25,21 +24,17 @@ class ItemCell < Cell::ViewModel
       render
     end
   end
+  def main_search(query = nil)
+    if query
+      @item = Item.new(query)
+    else
+      @item = Item.build
+    end
 
-
-
-  def item_li(item)
-    @item = item
-    render
-  end
-
-  def main_search
-    @item = Item.new
-    @item.build_item_category
-    @item.build_item_location
-    @item.build_field_rate
     render 'main_search_form'
   end
+
+
 
 
 end

@@ -2,7 +2,6 @@
   <div class="panel-heading">Quick Search</div>
   <div class="panel-body">
     <%= form_for(@item,{:url => :item_main_search,  :html => { :id => "main_search_form",:method => 'get'}}) do|f| %>
-
         <%= f.fields_for :item_location  do |builder| %>
             <div class="form-group">
               <label>
@@ -24,7 +23,6 @@
               %>
             </div>
         <% end%>
-
 
         <%= f.submit "Search", { :id => ["submit_user"], :class => ["btn btn-primary btn-lg btn-block"]} %>
 

@@ -27,7 +27,7 @@ RSpec.describe ItemController, :type => :controller do
     end
     it "Create a new item" do
       expect{
-        post :create,item: {item_descriptions_attributes: [@description_nest],
+        post :create, item: {item_descriptions_attributes: [@description_nest],
                             item_category_id: @category_nest["id"],
                             item_tags_attributes: {"0" => @tags_nest},
                             item_location_attributes: @location_nest,
@@ -50,7 +50,7 @@ RSpec.describe ItemController, :type => :controller do
     it "Fail to create item because title is blank" do
       @description_nest = FactoryGirl.build(:item_description,:empty_title).attributes
       expect{
-        post :create,item: {item_descriptions_attributes: [@description_nest],
+        post :create, item: {item_descriptions_attributes: [@description_nest],
                             item_category_id: @category_nest["id"],
                             item_tags_attributes: {"0" => @tags_nest},
                             item_location_attributes: @location_nest}
@@ -64,7 +64,7 @@ RSpec.describe ItemController, :type => :controller do
     it "Fail to create item because description is blank" do
       @description_nest = FactoryGirl.build(:item_description,:empty_description).attributes
       expect{
-        post :create,item: {item_descriptions_attributes: [@description_nest],
+        post :create, item: {item_descriptions_attributes: [@description_nest],
                             item_category_id: @category_nest["id"],
                             item_tags_attributes: {"0" => @tags_nest},
                             item_location_attributes: @location_nest}
@@ -79,7 +79,7 @@ RSpec.describe ItemController, :type => :controller do
     it "Fail to create item because item_category is blank" do
       @category_nest["id"] = -2
       expect{
-        post :create,item: {item_descriptions_attributes: [@description_nest],
+        post :create, item: {item_descriptions_attributes: [@description_nest],
                             item_category_id: @category_nest["id"],
                             item_tags_attributes: {"0" => @tags_nest},
                             item_location_attributes: @location_nest}
@@ -94,7 +94,7 @@ RSpec.describe ItemController, :type => :controller do
     it "Fail to add item because of fake city" do
       location_nest = FactoryGirl.build(:item_location,:fake_city).attributes
       expect{
-        post :create,item:   {item_descriptions_attributes: [@description_nest],
+        post :create, item:   {item_descriptions_attributes: [@description_nest],
                               item_category_id: @category_nest["id"],
                               item_tags_attributes: {"0" => @tags_nest},
                               item_location_attributes: location_nest}
@@ -113,7 +113,7 @@ RSpec.describe ItemController, :type => :controller do
     it "Fail to add item because of fake district" do
       location_nest = FactoryGirl.build(:item_location,:fake_district).attributes
       expect{
-        post :create,item:   {item_descriptions_attributes: [@description_nest],
+        post :create, item:   {item_descriptions_attributes: [@description_nest],
                               item_category_id: @category_nest["id"],
                               item_tags_attributes: {"0" => @tags_nest},
                               item_location_attributes: location_nest}
@@ -130,7 +130,7 @@ RSpec.describe ItemController, :type => :controller do
     it "3 tags must be added." do
       tags_nest = FactoryGirl.build(:item_tag).attributes
       expect{
-        post :create,item: {item_descriptions_attributes: [@description_nest],
+        post :create, item: {item_descriptions_attributes: [@description_nest],
                             item_category_id: @category_nest["id"],
                             item_tags_attributes: {"0" => tags_nest},
                             item_location_attributes: @location_nest}
@@ -139,7 +139,7 @@ RSpec.describe ItemController, :type => :controller do
     it "Max number of tags " do
       tags_nest = FactoryGirl.build(:item_long_tag).attributes
       expect{
-        post :create,item: {item_descriptions_attributes: [@description_nest],
+        post :create, item: {item_descriptions_attributes: [@description_nest],
                             item_category_id: @category_nest["id"],
                             item_tags_attributes: {"0" => tags_nest},
                             item_location_attributes: @location_nest}
