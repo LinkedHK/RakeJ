@@ -1,0 +1,9 @@
+
+<div class="panel panel-default">
+  <div class="panel-heading">Jobs Categories</div>
+  <div class="panel-body"  id="main_category_list">
+    <% @cat.tree(@column_num)  do |element| %>
+        <%= element %>
+    <% end %>
+  </div>
+</div>

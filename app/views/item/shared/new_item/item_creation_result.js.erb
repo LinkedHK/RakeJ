@@ -1,6 +1,6 @@
 (function(){
     <% if @item.save %>
-    window.location.href =  "<%= url_for(item_show_path({id: @item.id,slug: @item.slug})) %>";
+    window.location.href =  "<%= url_for(item_show_path({item_id: @item.id,slug: @item.slug})) %>";
     <% else %>
     $("#demo_result").text( "<%=  t("form_input.validation.unknown_error") %>");
     <% end %>

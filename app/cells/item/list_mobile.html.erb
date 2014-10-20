@@ -1,12 +1,26 @@
 <div style="height: 50px"></div>
 <section id="mobile_item_list_section"  class="primary_preview_item preview_list">
   <div class="item_container" id="item_scroll_area">
+
+    <% @p_list = paginate(@pagin) %>
+    <div>
+      Total: <%= @items_num %>
+    </div>
+
+    <div class="paginable">
+      <%= @p_list %>
+    </div>
     <% @items.list_items do |item| %>
         <div class="item_result_cell" data_item_id="<%= item.id %>" data_item_slug="<%= item.slug %>" id="itemid<%= item.id %>">
-          <div class="item_title"> <%=  link_to item.title,  item_show_path({:item_id => item.id,:slug => item.slug}) %> </div>
-          <div class="item_location"> <%= item.location %> </div>
-          <div class="item_created"> <%= item.created %> </div>
+          <a href="<%= url_for item_show_path({:item_id => item.id,:slug => item.slug}) %>">
+            <div class="item_title"> <%= item.title %> </div>
+            <div class="item_location"> <%= item.location %> </div>
+            <div class="item_created"> <%= item.created %> </div>
+          </a>
         </div>
   <% end %>
+  </div>
+  <div class="paginable">
+    <%= @p_list %>
   </div>
 </section>

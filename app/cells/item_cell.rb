@@ -6,22 +6,24 @@ class ItemCell < Cell::ViewModel
   include Kaminari::ActionViewExtension
   def list(items = nil)
     #puts "Items #{items}".colorize(:red)
-    @items = ItemPresenter.new(items)
-    if @items.blank?
+
+    if items.blank?
       puts "Nothing Found!"
     else
+
+      @items = ItemPresenter.new(items)
       render
     end
   end
   def list_mobile(items = nil)
-
-    puts "Items #{items}".colorize(:red)
-
-    @items = ItemPresenter.new(items)
-    if @items.blank?
-      puts "Nothing Found!"
-    else
+    if items.present?
+      @items = ItemPresenter.new(items)
+      @pagin = items
+      @items_num = items.length
+      @p_list = paginate(items)
       render
+      else
+        puts "Nothing Found!"
     end
   end
   def main_search(query = nil)
@@ -30,7 +32,6 @@ class ItemCell < Cell::ViewModel
     else
       @item = Item.build
     end
-
     render 'main_search_form'
   end
 

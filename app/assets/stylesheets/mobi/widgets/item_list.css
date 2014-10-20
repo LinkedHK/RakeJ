@@ -8,6 +8,15 @@
 
 /* Mobile */
 
+.item_title {
+    color: #000000;
+    font-weight: bold;
+    font-size: 20px;
+}
+.item_location {
+    color: green;
+}
+
 #mobile_item_list_section.preview_list{
     width: 100%;
 
@@ -31,6 +40,11 @@
     border-bottom: 1px solid #ddd;
     border-right: 2px solid #bbb;
 }
+.item_container .item_result_cell a:hover{
+    text-decoration: none;
+
+}
+
 .item_container .item_result_cell:hover{
     background-color: #edf5f9;
     border-right: 2px solid #93c6db;

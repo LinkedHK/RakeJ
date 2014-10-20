@@ -8,12 +8,12 @@ module Concerns
     end
     module ClassMethods
       include Utils::Common
-      def main_search(query,page = 1, limit = 25)
+      def main_search(query,page = 1, limit = 15)
         @page = page
         @limit = limit
         main_search_filter(query)
       end
-      def browse(slug, page = 1, limit = 25)
+      def browse(slug, page = 1, limit = 15)
         @page = page
         @limit = limit
         if is_int(slug)
@@ -29,13 +29,13 @@ module Concerns
           case key.to_sym
             when :item_category_id
               if value.present?
-                scope.where(key => value).page(@page).limit(@limit)
+                scope.where(key => value).page(@page)
               else
-                scope.all.page(@page).limit(@limit)
+                scope.all.page(@page)
               end
             when :item_location_attributes,:item_category_id
               if value[:location_district_id].present?
-                scope.includes(:item_location).where('item_location.location_district_id' => value[:location_district_id]).page(@page).limit(@limit)
+                scope.includes(:item_location).where('item_location.location_district_id' => value[:location_district_id]).page(@page)
               else
                 scope
               end

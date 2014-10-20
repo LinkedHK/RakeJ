@@ -7,11 +7,11 @@
 #main_category_list ul li{
     color: green;
 }
-@media (max-width: 767px){
-    #main_category_list{
+
+#main_category_list{
         padding: 0;
-    }
-    #main_category_list ul{
+}
+#main_category_list ul{
         font-size: 1em;
         line-height: 1.6;
         margin-bottom: 1.25em;
@@ -21,7 +21,7 @@
         float: none;
         padding: 0;
         list-style: none;
-    }
+}
 
 
     #main_category_list ul li{
@@ -43,4 +43,3 @@
     #main_category_list ul li  a:hover {
         background-color: #eee;
     }
-}
