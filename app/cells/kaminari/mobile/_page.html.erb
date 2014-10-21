@@ -9,9 +9,10 @@
 -%>
 <li class="<%= 'active ' if page.current? %>page">
 
-    <%if page.current?  %>
+  <%if page.current?  %>
       <a href="#"> <%= page %> <span class="sr-only">(current)</span></a>
-        <%else%>
-    <%= link_to page, url, {:remote => remote, :rel => page.next? ? 'next' : page.prev? ? 'prev' : nil} %>
-    <% end %>
+  <%else%>
+      <%= link_to page, url, {:remote => remote, :rel => page.next? ? 'next' : page.prev? ? 'prev' : nil} %>
+  <% end %>
 </li>
+

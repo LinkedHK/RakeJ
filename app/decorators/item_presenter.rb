@@ -1,4 +1,5 @@
 class ItemPresenter < PresenterBase
+  include ActionView::Helpers::DateHelper
 
   def list_items(&block)
     wrapped_enum(self,model,&block)
@@ -58,7 +59,13 @@ class ItemPresenter < PresenterBase
   end
 
   def created
-    model.created_at.strftime("%B %d, %Y")
+    cr_date = model.created_at
+    diff_time = Time.now - cr_date.to_time
+    if diff_time > 24.hours
+     I18n.t("form_input.item.item_posted",{:date => cr_date.strftime("%B %d, %Y")})
+    else
+      I18n.t("form_input.item.item_posted_ago", {:time_ago =>  time_ago_in_words(cr_date)})
+    end
   end
 
   def modified

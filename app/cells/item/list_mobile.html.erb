@@ -1,12 +1,8 @@
-<div style="height: 50px"></div>
 <section id="mobile_item_list_section"  class="primary_preview_item preview_list">
   <div class="item_container" id="item_scroll_area">
-
-    <% @p_list = paginate(@pagin) %>
     <div>
-      Total: <%= @items_num %>
+       <%= @page_entity %>
     </div>
-
     <div class="paginable">
       <%= @p_list %>
     </div>

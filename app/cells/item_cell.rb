@@ -19,20 +19,26 @@ class ItemCell < Cell::ViewModel
     if items.present?
       @items = ItemPresenter.new(items)
       @pagin = items
-      @items_num = items.length
-      @p_list = paginate(items)
+      @p_list = paginate(items, {:theme => 'mobile'})
+      @page_entity = page_entries_info items, :entry_name => 'jobs'
       render
       else
         puts "Nothing Found!"
     end
   end
-  def main_search(query = nil)
+
+  def main_search(query = nil, mobile = false)
     if query
       @item = Item.new(query)
     else
       @item = Item.build
     end
-    render 'main_search_form'
+    if mobile
+      render 'main_search_form_mobile'
+    else
+      render 'main_search_form'
+    end
+
   end
 
 
