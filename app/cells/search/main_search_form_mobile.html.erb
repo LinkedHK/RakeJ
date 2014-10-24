@@ -1,5 +1,5 @@
 <div class="panel panel-default">
-  <div class="panel-heading"><a data-toggle="collapse" style="display: block; text-align: center" href="#search_col" class="panel-heading">Quick Search</a></div>
+  <div class="panel-heading"><a data-toggle="collapse" style="display: block; text-align: center" href="#search_col" class="panel-heading">Quick Search &#x25BC;</a></div>
   <div id="search_col" class="panel-body panel-collapse collapse">
     <%= form_for(@item,{:url => :item_main_search,  :html => { :id => "main_search_form",:method => 'get'}}) do|f| %>
         <%= f.fields_for :item_location  do |builder| %>
@@ -23,10 +23,7 @@
               %>
             </div>
         <% end%>
-
         <%= f.submit "Search", { :id => ["submit_user"], :class => ["btn btn-primary btn-lg btn-block"]} %>
-
     <% end %>
-
   </div>
 </div>

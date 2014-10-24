@@ -1,4 +1,3 @@
-
     function WIDGET_item_list(options){
         this.$parentList = $("#item_scroll_area");
         this.$lastSelected = null;
@@ -7,41 +6,47 @@
         this.item_slug = "data_item_slug";
         this.response_cache = [];
         this.MAX_CACHE = 100;
+        this.list_cookies = new WIDGET_item_cookies(this);
         this.init_listeners();
-        this.selectFirstElement()
 
     }
     WIDGET_item_list.prototype.init_listeners = function(){
         this.OnClickItemList();
+        this.selectFirstElement();
     };
 
     WIDGET_item_list.prototype.OnClickItemList = function(){
         var self = this;
         $(".item_result_cell").on("click",function(){
             var element = $(this);
-            // Selected do nothing
-            if(self.isSelected(element)) return;
-            self.selectElement(element);
-            var id = self.getId(element);
-            self.getResult(element);
+            if(!self.isSelected(element)){
+                self.selectElement(element);
+                self.getResult(element);
+            }
         })
     };
-
-    WIDGET_item_list.prototype.OnMobileSelect = function(element){
-        var id = this.getId(element);
-        var slug = this.getSlug(element);
-
-
-    };
-
     WIDGET_item_list.prototype.selectFirstElement = function(){
-        this.$parentList.children().first().click();
+        var item_id = this.list_cookies.getItem();
+        var $found = null;
+        if(item_id){
+            $found = this.$parentList.children("div[data_item_id='" +item_id + "'] " );
+            if($found.length > 0){
+                // http://stackoverflow.com/questions/21179735/scroll-within-div-using-jquery
+                this.$parentList.animate({
+                    scrollTop: ($found.offset().top - this.$parentList.offset().top)
+                },500);
+            }else{
+                $found = this.$parentList.children().first();
+            }
+        }
+        $found.click();
     };
     WIDGET_item_list.prototype.selectElement = function($element){
         if($element.is(this.$lastSelected)) return;
         if(this.$lastSelected) this.$lastSelected.removeClass("selected");
         $element.addClass("selected");
         this.$lastSelected = $element;
+        this.list_cookies.setItem(this.getId($element));
     };
     WIDGET_item_list.prototype.isSelected = function($element){
      return $element.hasClass("selected");
@@ -53,45 +58,51 @@
         return $element.attr(this.item_id);
     };
     WIDGET_item_list.prototype.getResult = function(element){
-
         var id = this.getId(element);
         var cached = this.getCached(id);
         var self =this;
         if(cached){
             return  this.setItemContent(cached);
         }else{
-            this.makeItemRequest(element,function(response, item_id){
-                self.OnResponse(response,item_id)
+            this.makeItemRequest(element,function(response, item_data){
+                self.OnResponse(response,item_data)
             });
         }
     };
-
 
     WIDGET_item_list.prototype.showItemPath = function(id, slug){
       return  Routes.item_show_path({ item_id: id,slug: slug});
     };
     WIDGET_item_list.prototype.makeItemRequest = function(element, response_callback){
-        var id = this.getId(element);
-        var slug = this.getSlug(element);
-        var show_url =  this.showItemPath(id,slug);
-        var item_id = id;
         var self = this;
+        var item_data = this.buildItemRequest(element);
         $.ajax({
-            url:  show_url,
+            url:  item_data.show_url,
             method: "GET",
             error: function(jqXHR, textStatus, errorThrown){
                 console.log(errorThrown);
             }
-        })
-                .done(function(data){
-                    return response_callback(data,item_id);
+        }).done(function(response){
+                    return response_callback(response,item_data);
                 })
-
-
     };
-    WIDGET_item_list.prototype.OnResponse = function(response, item_id){
+
+    WIDGET_item_list.prototype.buildItemRequest = function(element){
+
+        var id = this.getId(element);
+        var slug = this.getSlug(element);
+        return {
+            id: id,
+            slug: this.getSlug(element),
+            show_url: this.showItemPath(id,slug)
+        }
+    };
+    WIDGET_item_list.prototype.getLastId = function(){
+        this.getId(this.$lastSelected);
+    };
+    WIDGET_item_list.prototype.OnResponse = function(response,item_data){
         this.setItemContent(response);
-        this.cacheResponse(response,item_id);
+        this.cacheResponse(response,item_data.id);
     };
 
     WIDGET_item_list.prototype.setItemContent = function(data){

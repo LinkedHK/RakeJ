@@ -37,6 +37,7 @@ gem 'omniauth-google-oauth2'
 gem 'seed-fu', '~> 2.3'
 gem 'kaminari'
 
+gem 'rails-api'
 
 
 group :test do

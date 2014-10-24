@@ -8,8 +8,6 @@ RSpec.describe UserAuth::RegistrationController, :type => :controller do
     before(:each) do
       @request.env["devise.mapping"] = Devise.mappings[:user]
 
-
-
     end
 
     it "Access signup page" do
@@ -28,8 +26,6 @@ RSpec.describe UserAuth::RegistrationController, :type => :controller do
                                password: @user_nest.password,
                                password_confirmation: @user_nest.password,
                                user_profile_attributes: @profile_nest
-
-
         }
       }.to change(User,:count).by(1)
 
