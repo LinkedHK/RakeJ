@@ -6,10 +6,11 @@
         this.item_slug = "data_item_slug";
         this.response_cache = [];
         this.MAX_CACHE = 100;
-        this.list_cookies = new WIDGET_item_cookies(this);
+        this.list_cookies = new WIDGET_item_list_cookies(this);
         this.init_listeners();
-
     }
+
+
     WIDGET_item_list.prototype.init_listeners = function(){
         this.OnClickItemList();
         this.selectFirstElement();
@@ -28,6 +29,7 @@
     WIDGET_item_list.prototype.selectFirstElement = function(){
         var item_id = this.list_cookies.getItem();
         var $found = null;
+
         if(item_id){
             $found = this.$parentList.children("div[data_item_id='" +item_id + "'] " );
             if($found.length > 0){
@@ -38,6 +40,9 @@
             }else{
                 $found = this.$parentList.children().first();
             }
+        }
+        if(!$found){
+            $found = this.$parentList.children().first();
         }
         $found.click();
     };
@@ -88,7 +93,6 @@
     };
 
     WIDGET_item_list.prototype.buildItemRequest = function(element){
-
         var id = this.getId(element);
         var slug = this.getSlug(element);
         return {
