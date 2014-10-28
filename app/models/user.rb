@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  include Concerns::Omniauthable
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -10,6 +12,8 @@ class User < ActiveRecord::Base
 
   accepts_nested_attributes_for :user_company
   accepts_nested_attributes_for :user_profile
+
+
 
 end
 

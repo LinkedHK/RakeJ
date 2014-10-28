@@ -4,4 +4,5 @@
 //= require jquery.cookie
 //= require bootstrap.min
 //= require modernizr
+//= require hello.min
 

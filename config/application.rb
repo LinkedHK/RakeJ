@@ -17,8 +17,25 @@ module RackJobs
     # config.time_zone = 'Central Time (US & Canada)'
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
-     config.i18n.load_path += Dir[Rails.root.join('kaminari', 'locales', '*.{rb,yml}').to_s]
-     config.i18n.load_path += Dir[Rails.root.join('faker', 'locales', '*.{rb,yml}').to_s]
+    #Dir[Rails.root.join('locales', '*.{rb,yml}')].each do |file_name|
+    #  config.i18n.load_path += file_name
+
+    #end
+
+
+    config.oauth_provider = {
+        :facebook => {
+            :client => '580075172115457',
+            :secret => '1eaaed08ed21268fe041774d44c8c801',
+            :scope => 'email,first_name,last_name'
+
+        },
+        :google_oauth2 => {
+            :client => '281455736047',
+            :secret => 'z0AumJzBro3SHAq8p3VPierm',
+        }
+    }
+
     # config.i18n.default_locale = :de
     config.time_zone = 'Asia/Hong_Kong'
 
@@ -40,5 +57,7 @@ module RackJobs
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
     config.autoload_paths += Dir["#{config.root}/app/decorators/**"]
     config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
+
+
   end
 end

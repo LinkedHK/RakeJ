@@ -7,7 +7,6 @@ RSpec.describe UserAuth::RegistrationController, :type => :controller do
 
     before(:each) do
       @request.env["devise.mapping"] = Devise.mappings[:user]
-
     end
 
     it "Access signup page" do
@@ -17,7 +16,6 @@ RSpec.describe UserAuth::RegistrationController, :type => :controller do
     end
 
     it "Submit signup user" do
-
       @user_nest= FactoryGirl.build(:user)
       @profile_nest= FactoryGirl.build(:user_profile).attributes
       expect{
@@ -32,7 +30,6 @@ RSpec.describe UserAuth::RegistrationController, :type => :controller do
     end
 
   end
-
 
 
 end

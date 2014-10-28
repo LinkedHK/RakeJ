@@ -9,15 +9,14 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => { :id => "signup_form", :class => "col-md-12"}) do |f| %>
     <%= devise_error_messages! %>
     <div class="row text-center">
-      <div class="col-md-4 col-sm-12">
-        <button type="button" class="btn btn-primary btn-block">Facebook</button>
-      </div>
-      <div class="col-md-4 col-sm-12">
-        <button type="button" class="btn btn-info btn-block">Twitter</button>
-      </div>
-      <div class="col-md-4 col-sm-12">
-        <button type="button" class="btn btn-danger btn-block">Google+</button>
-      </div>
+      <% if devise_mapping.omniauthable? %>
+          <% resource_class.omniauth_providers.each do |provider| %>
+              <% #link_to "Sign in with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider) %>
+              <div class="col-md-4 col-sm-12">
+                   <%= render "devise/shared/auth/#{provider}" %>
+              </div>
+          <% end %>
+      <% end %>
     </div>
   <hr />
   <div class="form-group">
@@ -52,5 +51,50 @@
     <%= f.submit "Sign up", { :id => ["submit_user"], :class => ["btn btn-primary btn-lg btn-block"]} %>
   </div>
 <% end %>
+
+<!--
+  Below we include the Login Button social plugin. This button uses
+  the JavaScript SDK to present a graphical Login button that triggers
+  the FB.login() function when clicked.
+-->
+
+<% %>
+
+<div id="status">
+</div>
+
+
+<script>
+
+    function parse_provider($button){
+        var data =  $button.attr("data-omni");
+        return JSON.parse(data);
+
+    }
+    $(document).ready(function(){
+        $(".auth_button").on("click",function(e){
+            var $element = $(this);
+            var data = parse_provider($element);
+            console.log(data);
+            var h_provider  = $element.attr("data-hello_name");
+            hello.init({
+                google : data.client
+            });
+            hello.login(h_provider,{
+                scope: data.scope ? data.scope.join(",") : null,
+                redirect_uri: data.redirect_uri
+            } ).then( function(){
+                console.log("Successful login");
+            }, function(e){
+                console.log(e); // error
+            });
+        });
+    });
+
+    (function(){
+
+    })();
+</script>
+
 
 <%= render "devise/shared/links" %>

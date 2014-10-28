@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141014103635) do
+ActiveRecord::Schema.define(version: 20141028063211) do
 
   create_table "category_description", force: true do |t|
     t.integer "item_category_id"
@@ -67,6 +67,18 @@ ActiveRecord::Schema.define(version: 20141014103635) do
   end
 
   add_index "field_rate", ["item_id"], name: "index_field_rate_on_item_id", unique: true, using: :btree
+
+  create_table "identities", force: true do |t|
+    t.integer  "user_id"
+    t.string   "provider",   default: "", null: false
+    t.string   "uid",        default: "", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "identities", ["provider"], name: "index_identities_on_provider", using: :btree
+  add_index "identities", ["uid"], name: "index_identities_on_uid", unique: true, using: :btree
+  add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
 
   create_table "item_categories", force: true do |t|
     t.integer "parent_id",             default: -1
@@ -141,6 +153,18 @@ ActiveRecord::Schema.define(version: 20141014103635) do
   add_index "location_district", ["location_city_id"], name: "index_location_district_on_location_city_id", using: :btree
   add_index "location_district", ["name"], name: "index_location_district_on_name", using: :btree
 
+  create_table "omni_identities", force: true do |t|
+    t.integer  "user_id"
+    t.string   "provider",   default: ""
+    t.string   "uid",        default: ""
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "omni_identities", ["provider"], name: "index_omni_identities_on_provider", using: :btree
+  add_index "omni_identities", ["uid"], name: "index_omni_identities_on_uid", unique: true, using: :btree
+  add_index "omni_identities", ["user_id"], name: "index_omni_identities_on_user_id", using: :btree
+
   create_table "profile_descriptions", force: true do |t|
     t.string  "profile_name",    limit: 20
     t.string  "locale",          limit: 10, default: "en_US"
@@ -161,6 +185,13 @@ ActiveRecord::Schema.define(version: 20141014103635) do
 
   add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true, using: :btree
   add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
+
+  create_table "site_settings", force: true do |t|
+    t.string   "name",       default: ""
+    t.text     "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "user_companies", force: true do |t|
     t.string   "company_name",        limit: 50
@@ -206,6 +237,7 @@ ActiveRecord::Schema.define(version: 20141014103635) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
+    t.string   "name"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
