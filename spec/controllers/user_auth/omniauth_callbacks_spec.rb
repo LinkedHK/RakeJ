@@ -18,7 +18,6 @@ RSpec.describe UserAuth::OmniauthCallbacksController, :type => :controller do
       expect(UserProfile.count).to eq(u_profile+1)
       expect(response).to redirect_to(user_check_profile_path)
     end
-
     it "Submit an existing user" do
       omni =  OmniService.new(request.env["omniauth.auth"])
       omni.check_uid
@@ -28,15 +27,12 @@ RSpec.describe UserAuth::OmniauthCallbacksController, :type => :controller do
       expect(response).to redirect_to(root_path)
     end
 
-    it "Submit invalid user" do
-=begin
+    it "Submit an invalid user" do
       set_invalid_omniauth
       expect{
         get :facebook, request.env["omniauth.auth"]
       }.to raise_exception
-
       expect(response).to redirect_to(redirect_to new_user_registration_url)
-=end
     end
   end
 

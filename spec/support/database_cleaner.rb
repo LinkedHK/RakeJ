@@ -15,7 +15,7 @@ RSpec.configure do |config|
   end
 
   config.before(:each, :js => true) do
-    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.strategy = :truncation,{:pre_count => true,:reset_ids => true}
   end
 
   config.before(:each) do
@@ -24,7 +24,6 @@ RSpec.configure do |config|
 
   config.after(:each) do
     Capybara.reset_sessions!
-
     DatabaseCleaner.clean
   end
 end

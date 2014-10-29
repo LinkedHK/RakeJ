@@ -1,10 +1,11 @@
-<script src="https://apis.google.com/js/client:platform.js" async defer></script>
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+<script src="https://apis.google.com/js/client:platform.js?onload=render" async defer></script>
 
 <button class="g-signin"
-        data-scope="https://www.googleapis.com/auth/plus.login"
-        data-requestvisibleactions="http://schemas.google.com/AddActivity"
+        data-scope="<%= omni_scope(:google_oauth2)%>"
         data-clientId="<%= omni_client(:google_oauth2)%>"
         data-callback="onSignInCallback"
+        data-redirect_uri="<%= omni_redirect(:google_oauth2)%>"
         data-theme="dark"
         id="google_butt"
         data-cookiepolicy="single_host_origin">
@@ -59,7 +60,7 @@
 
             send_callback: function(response){
 
-                jQuery.ajax({type: 'GET', url: "<%= omni_redirect(:google_oauth2)%>", dataType: 'json', data: response,
+                jQuery.ajax({type: 'POST', url: "<%= omni_redirect :google_oauth2 %>", dataType: 'json', data: response,
                     success: function(json) {
                         console.log(json);
                         // response from server

@@ -11,7 +11,7 @@ Capybara.configure do |c|
   #c.javascript_driver = :poltergeist
   #c.javascript_driver = :selenium
 
-  c.app_host = 'http://dis.ddns.net:3000'
+ # c.app_host = 'http://dis.ddns.net:3000'
  # c.server_port =  3000
 
   c.default_wait_time = 5

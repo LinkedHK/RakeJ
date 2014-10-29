@@ -11,9 +11,9 @@ Rails.application.routes.draw do
     get '(page/:page)', :action => :index, :on => :collection, :as => '',constraints: { page: /\d+/ }
   end
 
-  scope "/usr" do
-    get "/check_profile" => "user_auth/registration#check_profile", as: 'user_check_profile'
-  end
+  #scope "/usr" do
+   # get "/check_profile" => "user_auth/registration#check_profile", as: 'user_check_profile'
+ # end
   scope "/item" do
     get "/", to: "item#index", as: 'item_index'
     get "/:slug", to: "search#browse", as: 'item_browse',constraints: { slug: /[a-zA-Z0-9_-]+/ },:concerns => :paginatable

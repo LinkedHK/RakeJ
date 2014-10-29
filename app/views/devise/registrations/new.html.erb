@@ -52,49 +52,10 @@
   </div>
 <% end %>
 
-<!--
-  Below we include the Login Button social plugin. This button uses
-  the JavaScript SDK to present a graphical Login button that triggers
-  the FB.login() function when clicked.
--->
-
-<% %>
 
 <div id="status">
 </div>
 
-
-<script>
-
-    function parse_provider($button){
-        var data =  $button.attr("data-omni");
-        return JSON.parse(data);
-
-    }
-    $(document).ready(function(){
-        $(".auth_button").on("click",function(e){
-            var $element = $(this);
-            var data = parse_provider($element);
-            console.log(data);
-            var h_provider  = $element.attr("data-hello_name");
-            hello.init({
-                google : data.client
-            });
-            hello.login(h_provider,{
-                scope: data.scope ? data.scope.join(",") : null,
-                redirect_uri: data.redirect_uri
-            } ).then( function(){
-                console.log("Successful login");
-            }, function(e){
-                console.log(e); // error
-            });
-        });
-    });
-
-    (function(){
-
-    })();
-</script>
 
 
 <%= render "devise/shared/links" %>
