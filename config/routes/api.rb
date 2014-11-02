@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
-
-  root to: 'st#index', as: 'st_path'
+  namespace :api, :defaults => { :format => 'json' } do
+    scope module: :v1, constraints: ApiConstraints.new(version: 1, default: :true) do
+     resource :items
+    end
+  end
 end

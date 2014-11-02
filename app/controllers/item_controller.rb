@@ -10,7 +10,6 @@ class ItemController < ApplicationController
   #  puts "!!!!!!!!!!!!!!!!!!!! Create params #{create_params.inspect}".colorize(:red)
     @item = Item.new(create_params)
     @saved = @item.save
-
     respond_to do |format|
       if @saved
         format.json {render json:  { :result  => 1, :info => t("form_input.item.item_creation_successfull") }}
@@ -31,7 +30,6 @@ class ItemController < ApplicationController
         format.json { render json: @item.as_json(Item.show_as_json) }
     end
   end
-
 
 
   def create_params

@@ -23,19 +23,6 @@ module RackJobs
     #end
 
 
-    config.oauth_provider = {
-        :facebook => {
-            :client => '580075172115457',
-            :secret => '1eaaed08ed21268fe041774d44c8c801',
-            :scope => 'email,first_name,last_name'
-
-        },
-        :google_oauth2 => {
-            :client => '281455736047',
-            :secret => 'z0AumJzBro3SHAq8p3VPierm',
-        }
-    }
-
     # config.i18n.default_locale = :de
     config.time_zone = 'Asia/Hong_Kong'
 
@@ -53,6 +40,7 @@ module RackJobs
                        :request_specs => true
       g.fixture_replacement :factory_girl, :dir => "spec/factories"
     end
+    config.autoload_paths += Dir["#{config.root}/controllers/api/**/"]
 
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
     config.autoload_paths += Dir["#{config.root}/app/decorators/**"]
