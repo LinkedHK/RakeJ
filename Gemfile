@@ -7,7 +7,6 @@ gem 'rails', '4.1.6'
 #gem 'pg'
 gem 'mysql2'
 
-
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 #gem 'open_uri_redirections'
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
@@ -53,7 +52,7 @@ end
 
 group :development, :test do
   gem 'rspec-rails'
-  gem 'rspec-collection_matchers'
+#  gem 'rspec-collection_matchers'
   gem 'colorize', :git => "git://github.com/fazibear/colorize.git"
   gem 'factory_girl_rails'
 

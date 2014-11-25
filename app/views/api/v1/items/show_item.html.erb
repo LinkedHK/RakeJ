@@ -1,0 +1,23 @@
+<div class="page-header">
+  <h1><%= @item.title %></h1>
+</div>
+<div class="item_meta page-header">
+  <div class="row category_info">
+    <div class="col-md-4"> Category:  <%= @item.category %></div>
+    <div class="col-md-4"> Published date:  <%= @item.created %></div>
+    <div class="col-md-4"> Modified date:  <%= @item.modified %></div>
+  </div>
+  <div class="row">
+    <div class="col-md-4"> Location:  <%= @item.location %></div>
+  </div>
+</div>
+<div class="content-main">
+  <%= simple_format @item.description %>
+</div>
+<div class="page-header item_bottom">
+  <div class="row">
+    <div class="col-md-4">
+      Salary Range: <%= @item.rate%>
+    </div>
+  </div>
+</div>
