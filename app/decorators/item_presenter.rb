@@ -78,14 +78,13 @@ class ItemPresenter < PresenterBase
 
   def to_hash
     {
-        :id => @item.id,
-        :title=> @item.title,
-        :description => @item.description,
-        :category =>  @item.category,
-        :published => @item.created,
-        :modified => @item.modified,
-        :location => @item.location,
-        :rate => @item.rate
+        :id => model.id,
+        :title=> title,
+        :description => description,
+        :category =>  category,
+        :published => created,
+        :location => location,
+        :rate => rate
     }
   end
 
