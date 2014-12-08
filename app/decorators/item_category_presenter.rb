@@ -21,7 +21,6 @@ class ItemCategoryPresenter < PresenterBase
 
        block.call( content_tag :li,link_to(category.name + " (#{cat.items_count})",
                                item_browse_path(slug)))
-
        counter +=1
      end
     block.call( raw("</ul>") )

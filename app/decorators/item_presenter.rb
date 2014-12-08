@@ -76,5 +76,35 @@ class ItemPresenter < PresenterBase
     model.item_category.category_descriptions.first.name
   end
 
+  def to_hash
+    {
+        :id => @item.id,
+        :title=> @item.title,
+        :description => @item.description,
+        :category =>  @item.category,
+        :published => @item.created,
+        :modified => @item.modified,
+        :location => @item.location,
+        :rate => @item.rate
+    }
+  end
+
+  def to_hash_list
+    data = []
+    list_items do |item|
+
+      res = {
+          :id => item.id,
+          :title => item.title,
+          :city => item.city,
+          :district => item.district,
+          :location => item.location,
+          :created => item.created
+      }
+
+      data.push(res)
+    end
+    data
+  end
 
 end
