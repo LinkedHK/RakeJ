@@ -4,7 +4,6 @@ class LocationDistrict < ActiveRecord::Base
 
   def self.default_list
     self.joins(:location_city).where('location_city.default_city = 1')
-
   end
 end
 

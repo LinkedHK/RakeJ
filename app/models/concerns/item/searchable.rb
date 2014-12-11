@@ -5,6 +5,8 @@ module Concerns
       attr_accessor :page
       attr_accessor :offset
       attr_accessor :page
+
+
     end
     module ClassMethods
       include Utils::Common

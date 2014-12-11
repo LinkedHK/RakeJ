@@ -5,17 +5,23 @@ class Item < ActiveRecord::Base
   has_one :field_rate, :dependent => :destroy, inverse_of: :item
   has_one :item_location
   belongs_to :item_category,counter_cache: true
-
   accepts_nested_attributes_for :item_descriptions
   accepts_nested_attributes_for :item_location
   accepts_nested_attributes_for :field_rate
   validate :check_category
-
   attr_reader :slug
  # attr_accessor :item_category_id
   #attr_accessor :item_location
-
-
+  searchable do
+    text :title do
+        item_descriptions.map{ |item_desc| item_desc.item_title }
+    end
+    text :category do
+      item_category.category_descriptions.map{ |cat_descr| cat_descr.name }
+    end
+    time :created_at
+    integer :item_category_id
+  end
   def self.build
    item = self.new
    item.item_descriptions.build

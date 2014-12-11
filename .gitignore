@@ -7,6 +7,13 @@
 # Ignore bundler config.
 /.bundle
 /tmp/*
+
+# Solr Indexed Data dirs
+#/solr/data
+/solr/development/data/*
+/solr/default/data/*
+/solr/pids/*
+
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal

@@ -75,7 +75,6 @@ class ItemPresenter < PresenterBase
   def category
     model.item_category.category_descriptions.first.name
   end
-
   def to_hash
     {
         :id => model.id,
