@@ -36,11 +36,12 @@ gem 'omniauth-google-oauth2'
 gem 'seed-fu', '~> 2.3'
 gem 'kaminari'
 
-gem 'elasticsearch-rails', '~> 0.1.6'
-gem 'elasticsearch-model', '~> 0.1.6'
+gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
+gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
+gem 'searchkick'
 
-gem 'sunspot_rails'
-gem 'sunspot_solr' # optional pre-packaged Solr distribution for use in development
+#gem 'sunspot_rails'
+#gem 'sunspot_solr' # optional pre-packaged Solr distribution for use in development
 gem 'progress_bar'
 #This crap prevents from initialization Session!
 #gem 'rails-api'

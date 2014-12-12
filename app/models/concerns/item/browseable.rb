@@ -1,11 +1,10 @@
 module Concerns
   module Item
-    module Searchable extend ActiveSupport::Concern
+    module Browseable extend ActiveSupport::Concern
     included do
       attr_accessor :page
       attr_accessor :offset
       attr_accessor :page
-
 
     end
     module ClassMethods

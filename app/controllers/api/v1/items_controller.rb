@@ -6,6 +6,7 @@
       render :json => @item.to_hash_list.as_json
     end
 
+
     def list_cat
       # Todo move this crap to the presentation layer
       @cats = CategoryDescription.where(:locale => 'en_US').joins(:item_category)
@@ -24,18 +25,28 @@
      params.permit(:id, :category, :page)
    end
    def live_search
-    text = live_search_params[:search]
-    @item =  Item.search  do
-      fulltext text do
-        phrase_fields :title => 2.0
-        phrase_slop 1
-      end
-      order_by(:created_at,:desc)
-      paginate page: 1, per_page: 5
-    end
-    @res = ItemSearchPresenter.new(@item.results)
-# @item.results
-    render :json => @res.live_search_hash
+=begin
+       text = live_search_params[:search]
+       @item =  Item.search  do
+         fulltext text do
+           phrase_fields :title => 2.0
+           phrase_slop 1
+         end
+         order_by(:created_at,:desc)
+         paginate page: 1, per_page: 5
+       end
+       @res = ItemSearchPresenter.new(@item.results)
+       # @item.results
+=end
+
+
+     text = live_search_params[:search]
+
+     items = Item.search(text, limit: 5, fields: ["title^10", "category"], order:{created_at: :desc},
+                        autocomdplete: true,analyzer: "searchkick_word_start_index")
+    res = ItemSearchPresenter.new(items)
+
+    render :json => res.live_search_hash
    end
    def live_search_params
      params.permit(:search)
