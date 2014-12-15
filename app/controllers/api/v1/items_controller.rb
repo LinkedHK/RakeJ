@@ -39,14 +39,11 @@
        # @item.results
 =end
 
-
      text = live_search_params[:search]
-
-     items = Item.search(text, limit: 5, fields: ["title^10", "category"], order:{created_at: :desc},
+     items = Item.search(text, limit: 10, fields: ["title^10", "category"], order:{created_at: :desc},
                         autocomdplete: true,analyzer: "searchkick_word_start_index")
-    res = ItemSearchPresenter.new(items)
-
-    render :json => res.live_search_hash
+    res = ItemPresenter.new(items)
+    render :json => res.to_hash_list
    end
    def live_search_params
      params.permit(:search)
