@@ -40,13 +40,16 @@
 =end
 
      text = live_search_params[:search]
-     items = Item.search(text, limit: 10, fields: ["title^10", "category"], order:{created_at: :desc},
+      page = live_search_params[:page].present? ?  live_search_params[:page] : 1
+
+     items = Item.search(text, limit: 10, page: page, fields: ["title^10", "category"], order:{created_at: :desc},
                         autocomdplete: true,analyzer: "searchkick_word_start_index")
+
     res = ItemPresenter.new(items)
     render :json => res.to_hash_list
    end
    def live_search_params
-     params.permit(:search)
+     params.permit(:search,:page)
    end
 
 
