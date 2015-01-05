@@ -1,4 +1,4 @@
-# Job Searcher Web App
+# Job Seeker Web App
 
 This app is used as the rest backend for a mobile app of job seeker
 
