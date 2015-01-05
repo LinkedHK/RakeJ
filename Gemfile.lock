@@ -34,7 +34,7 @@ GIT
       mime-types
 
 GEM
-  remote: https://rubygems.org/
+  remote: http://rubygems.org/
   specs:
     actionmailer (4.1.8)
       actionpack (= 4.1.8)
@@ -64,6 +64,7 @@ GEM
       tzinfo (~> 1.1)
     arel (5.0.1.20140414130214)
     bcrypt (3.1.9)
+    bcrypt (3.1.9-x86-mingw32)
     builder (3.2.2)
     capybara (2.4.4)
       mime-types (>= 1.16)
@@ -125,6 +126,7 @@ GEM
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.6)
+    ffi (1.9.6-x86-mingw32)
     formatador (0.2.5)
     guard (2.10.2)
       formatador (>= 0.2.4)
@@ -174,6 +176,8 @@ GEM
     mysql2 (0.3.17)
     nokogiri (1.6.5)
       mini_portile (~> 0.6.0)
+    nokogiri (1.6.5-x86-mingw32)
+      mini_portile (~> 0.6.0)
     nokogumbo (1.1.12)
       nokogiri
     oauth (0.4.7)
@@ -217,6 +221,11 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry (0.10.1-x86-mingw32)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+      win32console (~> 1.3)
     rabl (0.11.5)
       activesupport (>= 2.3.14)
     rack (1.5.2)
@@ -313,6 +322,8 @@ GEM
       hitimes
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    tzinfo-data (1.2014.10)
+      tzinfo (>= 1.0.0)
     uber (0.0.11)
     uglifier (2.6.0)
       execjs (>= 0.3.0)
@@ -321,11 +332,13 @@ GEM
       rack (>= 1.0)
     websocket (1.2.1)
     websocket-driver (0.4.0)
+    win32console (1.3.2-x86-mingw32)
     xpath (2.0.0)
       nokogiri (~> 1.3)
 
 PLATFORMS
   ruby
+  x86-mingw32
 
 DEPENDENCIES
   activerecord-session_store!

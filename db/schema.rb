@@ -68,18 +68,6 @@ ActiveRecord::Schema.define(version: 20141028063211) do
 
   add_index "field_rate", ["item_id"], name: "index_field_rate_on_item_id", unique: true, using: :btree
 
-  create_table "identities", force: true do |t|
-    t.integer  "user_id"
-    t.string   "provider",   default: "", null: false
-    t.string   "uid",        default: "", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "identities", ["provider"], name: "index_identities_on_provider", using: :btree
-  add_index "identities", ["uid"], name: "index_identities_on_uid", unique: true, using: :btree
-  add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
-
   create_table "item_categories", force: true do |t|
     t.integer "parent_id",             default: -1
     t.integer "enabled",     limit: 1, default: 0
@@ -100,6 +88,7 @@ ActiveRecord::Schema.define(version: 20141028063211) do
   add_index "item_description", ["item_id"], name: "index_item_description_on_item_id", using: :btree
 
   create_table "item_location", force: true do |t|
+    t.integer "item_id"
     t.integer "location_country_id"
     t.string  "s_country"
     t.integer "location_city_id"
@@ -108,7 +97,6 @@ ActiveRecord::Schema.define(version: 20141028063211) do
     t.string  "s_district"
     t.decimal "d_coord_lat",          precision: 10, scale: 6
     t.decimal "d_coord_long",         precision: 10, scale: 6
-    t.integer "item_id"
   end
 
   create_table "item_tags", force: true do |t|
@@ -237,7 +225,6 @@ ActiveRecord::Schema.define(version: 20141028063211) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.string   "name"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

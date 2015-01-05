@@ -1,8 +1,8 @@
 class AddJobItem < ActiveRecord::Migration
   def change
-    create_table :job_items do |t|
+    create_table :items do |t|
       t.belongs_to :user
-      t.belongs_to :job_categories
+      t.belongs_to :item_categories
       t.string :job_type #(Permanent, Temporary)
       t.integer :duration_day #(Day, Weeks, Month)
       t.integer :duration_weeks
@@ -21,7 +21,7 @@ class AddJobItem < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index(:job_items,:user_id)
+    add_index(:items,:user_id)
 
 
   end

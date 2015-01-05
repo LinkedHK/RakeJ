@@ -1,7 +1,7 @@
 class AddItemLocationTable < ActiveRecord::Migration
   def change
     create_table :item_location do |t|
-      t.belongs_to :job_item
+      t.belongs_to :item
       t.belongs_to :location_country
       t.string :s_country
       t.belongs_to :location_city

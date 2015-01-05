@@ -1,6 +1,6 @@
 class RenameItemReferences < ActiveRecord::Migration
   def change
-   # remove_reference(:item_tags,:job_item)
+   # remove_reference(:item_tags,:item)
     add_reference(:item_tags,:item)
    # add_reference(:item_categories,:parent)
   end

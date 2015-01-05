@@ -1,6 +1,6 @@
 class RemoveCoilumnsInitems < ActiveRecord::Migration
   def change
-    remove_column(:items,:job_categories_id)
+    remove_column(:items,:item_categories_id)
     remove_column(:items,:job_type)
     remove_column(:items,:duration_day)
     remove_column(:items,:duration_weeks)
